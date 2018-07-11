@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>CRTM</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <style>
+		
+    #map{
+		position: absolute;
+		top: 60px;
+		left: 0px;
+		padding: 0px;
+		width: 100%;
+		height: 100%;
+		
+	} 
+	
+	#sbox{
+		
+		height: 60px;
+		border:none;
+		color: #333;
+		outline: none;
+		
+	}
+	
+	#search{
+		border:none;
+	}
+	
+	#sbut{
+		
+		background: #FFF;
+		height: 60px;
+	}
+		
+		
+    </style>
+  </head>
+  <body>
+  
+  <form class="navbar-form" role="search">
+					<div class="input-group" id="sbox">
+						<input type="text" class="form-control" id="search" placeholder="Search">
+						<span class="input-group-btn">
+							
+							<div class="btn btn-default" id="sbut" onclick="geocodeAddress(geocoder,map);">
+								<span class="fas fa-search"></span>
+									<span class="sr-only">Search</span>
+								</span>
+							</div>
+						</span>
+					</div>
+				</form>
+	  
+  <div id="map"></div>
+
+
+  <script src="js/jquery-slim.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/func.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg&callback=initMap" async defer></script>
+
+  
+  <script>
+	  
+	var map;
+	var bus_img;
+	var geocoder;
+	var home = {lat: 40.4023449, lng: -3.688156899999967}; //Atocha
+
+    function initMap() {
+		
+		geocoder = new google.maps.Geocoder();
+		
+		bus_img = {
+          url: 'https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/32/bus.png',
+          size: new google.maps.Size(32, 32),
+          origin: new google.maps.Point(0, 0),
+          anchor: new google.maps.Point(0, 32)
+        };
+	  
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: home,
+        zoom: 12
+      });
+    }
+    
+    function txt2ll(search) {
+    
+        geocoder.geocode({'address': search}, function(results, status) {
+          if (status === 'OK') {
+            console.log(results[0].geometry.location);
+          } else {
+            console.log('Geocode error: ' + status);
+          }
+        });
+      }
+      
+	function search_stations(home,dist){
+		  
+		stations = sparql("PREFIX tran: <http://www.semanticweb.org/edna/ontologies/2018/transportAccessibility#> select * where { ?class rdf:type tran:TrainStop . ?class geo:lat ?lat . ?class geo:long ?long . ?class foaf:name ?name }");
+		  
+		console.log(stations);
+		  
+		for(i=0; i < stations.length; i++){ //
+			var coord = station2ll(stations[i]);
+			
+			if(ll2distance(coord,home) < dist){
+				var marker = new google.maps.Marker({
+				map: map,
+				title: stations[i].name.value+" ("+Math.round(ll2distance(coord,home))+" metros)",
+				icon: bus_img,
+				position: coord
+				});		
+			}	
+					
+		}	
+	}
+
+  </script>
+  </body>
+</html>
