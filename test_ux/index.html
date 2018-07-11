@@ -83,7 +83,7 @@
 
 	function init(){
 		
-		load_stations();
+		load_stations_metro();
 		
 	}
 
@@ -116,9 +116,6 @@
         });
       }
       
-      
-    
-    
     function load_stations_metro_cb(stations){
 		stations = stations.results.bindings;
 		for(i=0; i < stations.length; i++){			

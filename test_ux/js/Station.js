@@ -5,6 +5,8 @@ function Station(uri,lat,lng,name,type){
 	this.lng = lng;
 	this.name = name;
 	this.type = type;
+	this.access = new Array();
+	this.platforms = new Array();
 	
 }
 
@@ -13,7 +15,7 @@ Station.prototype.coord = function(){
 	ll = {
 		lat: this.lat,
 		lng: this.lng 
-		}
+	}
 	
 	return ll;
 	
@@ -39,6 +41,27 @@ Station.prototype.dist = function(ref){
 	
 }
 
+Station.prototype.addplatform = function(uri,line,direction){
+	
+	platform = {
+		uri: uri,
+		line: line,
+		direction: direction
+	}
+		
+	this.platforms.push(platform);
+	
+}
 
-
-
+Station.prototype.addaccess = function(uri,lat,lng,name){
+	
+	access = {
+		uri: uri,
+		lat: lat,
+		lng: lng,
+		name: name
+	}
+		
+	this.access.push(access);
+	
+}
