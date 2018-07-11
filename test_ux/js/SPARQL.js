@@ -1,8 +1,6 @@
 function SPARQL(query){
 
 	this.query = query;
-	this.status = "new";
-	this.data = {};
 	
 }
 

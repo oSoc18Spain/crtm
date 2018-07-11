@@ -50,7 +50,7 @@
 						<input type="text" class="form-control" id="search" placeholder="Search">
 						<span class="input-group-btn">
 							
-							<div class="btn btn-default" id="sbut" onclick="geocodeAddress(geocoder,map);">
+							<div class="btn btn-default" id="sbut" onclick="searchmap(document.getElementById('search').value, searchmap_cb);">
 								<span class="fas fa-search"></span>
 									<span class="sr-only">Search</span>
 								</span>
@@ -69,55 +69,24 @@
   <script src="js/SPARQL.js"></script>
   <script src="js/Station.js"></script>
   <script src="js/StationMap.js"></script>
+  <script src="js/GoogleMaps.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg&callback=initMap" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg&callback=initmap" async defer></script>
 
   
   <script>
 	  
 	var SM;
-	var map;
-	var bus_img;
-	var geocoder;
-	var home = {lat: 40.4023449, lng: -3.688156899999967}; //Atocha
+	var GM;
 
 	function init(){
 		
 		SM = new StationMap();
+		
 		SM.init();
 		
 	}
-
-
-    function initMap() {
-		
-		geocoder = new google.maps.Geocoder();
-		
-		bus_img = {
-          url: 'https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/32/bus.png',
-          size: new google.maps.Size(32, 32),
-          origin: new google.maps.Point(0, 0),
-          anchor: new google.maps.Point(0, 32)
-        };
-	  
-      map = new google.maps.Map(document.getElementById('map'), {
-        center: home,
-        zoom: 12
-      });
-    }
-    
-    function txt2ll(search) {
-    
-        geocoder.geocode({'address': search}, function(results, status) {
-          if (status === 'OK') {
-            console.log(results[0].geometry.location);
-          } else {
-            console.log('Geocode error: ' + status);
-          }
-        });
-      }
-      
-    
+	
 
   </script>
   </body>

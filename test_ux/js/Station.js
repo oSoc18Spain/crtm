@@ -1,6 +1,7 @@
-function Station(uri,lat,lng,name,type){
+function Station(uri,code,lat,lng,name,type){
 	
 	this.uri = uri;
+	this.code = code;
 	this.lat = lat;
 	this.lng = lng;
 	this.name = name;
@@ -13,8 +14,8 @@ function Station(uri,lat,lng,name,type){
 Station.prototype.coord = function(){
 	
 	ll = {
-		lat: this.lat,
-		lng: this.lng 
+		lat: parseFloat(this.lat),
+		lng: parseFloat(this.lng)
 	}
 	
 	return ll;
