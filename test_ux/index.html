@@ -68,14 +68,14 @@
   <script src="js/func.js"></script>
   <script src="js/SPARQL.js"></script>
   <script src="js/Station.js"></script>
+  <script src="js/StationMap.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg&callback=initMap" async defer></script>
 
   
   <script>
 	  
-	var Stations = new Array();
-	  
+	var SM;
 	var map;
 	var bus_img;
 	var geocoder;
@@ -83,7 +83,8 @@
 
 	function init(){
 		
-		load_stations_metro();
+		SM = new StationMap();
+		SM.init();
 		
 	}
 
@@ -116,18 +117,7 @@
         });
       }
       
-    function load_stations_metro_cb(stations){
-		stations = stations.results.bindings;
-		for(i=0; i < stations.length; i++){			
-			Stations.push(new Station(stations[i].class.value, stations[i].lat.value, stations[i].long.value, stations[i].name.value, 0));							
-		}
-		console.log("Loaded "+stations.length+" Metro stations");
-	}
-      
-	function load_stations_metro(){	  
-		q = new SPARQL("PREFIX tran: <http://www.semanticweb.org/edna/ontologies/2018/transportAccessibility#> select * where { ?class rdf:type tran:TrainStop . ?class geo:lat ?lat . ?class geo:long ?long . ?class foaf:name ?name }");	
-		q.run(load_stations_metro_cb);
-	}
+    
 
   </script>
   </body>
