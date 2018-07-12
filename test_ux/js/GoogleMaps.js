@@ -1,5 +1,6 @@
 var map;
 var geocoder;
+var markers;
 
 var home = {lat: 40.3980136, lng: -3.7282341000000088}; //Atocha
 	
@@ -19,12 +20,17 @@ function initmap(){
       });
       
 	geocoder = new google.maps.Geocoder();
+
+	markers = [];
 	
 }
 
 function searchmap(search, cb){
-
-			geocoder.geocode({'address': search}, cb);
+	markers.forEach(function(mk){
+		mk.setMap(null);
+	});
+	markers = []
+	geocoder.geocode({'address': search}, cb);
 }
 
 function searchmap_cb(results, status){
@@ -42,7 +48,9 @@ function searchmap_cb(results, status){
 
 			while((sl = SM.search(ll, radius)).length < MAX_RESULTS)
 				radius += 100;
+			sl = sl.slice(0, MAX_RESULTS);
 			addstation(sl);
+
 
 			document.getElementById('results-button').style.display = ""
 			console.log(sl)
@@ -52,6 +60,7 @@ function searchmap_cb(results, status){
 				clone.style.display = ""
 				clone.id = result.id + idx
 				var icon = clone.getElementsByClassName("col-md-1")[0]
+
 				if(elm['type'] == 0){
 					icon.classList.add("fas")
 					icon.classList.add("fa-subway")
@@ -76,16 +85,20 @@ function searchmap_cb(results, status){
 }
 
 function addstation(marks){
-	
-	for(i=0; i < marks.length; i++){
+
+	for(i = 0; i < marks.length; i++){
 		
 		console.log(marks[i].coord());
 		
-		 var marker = new google.maps.Marker({
-          position: marks[i].coord(),
-          map: map,
-          title: marks[i].name
+		var marker = new google.maps.Marker({
+			position: marks[i].coord(),
+			map: map,
+			title: marks[i].name
 		});
+
+		marker.setMap(map);
+
+ 		markers.push(marker);
 		
 	}
 
