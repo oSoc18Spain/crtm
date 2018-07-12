@@ -13,12 +13,10 @@
 		
     #map{
 		position: absolute;
-		top: 60px;
 		left: 0px;
 		padding: 0px;
 		width: 100%;
-		height: 100%;
-		
+		height: calc(100vh - 60px);
 	} 
 	
 	#sbox{
@@ -38,8 +36,8 @@
 		
 		background: #FFF;
 		height: 60px;
+		padding-top: 1em;
 	}
-		
 		
     </style>
   </head>
@@ -59,7 +57,34 @@
 					</div>
 				</form>
 	  
-  <div id="map"></div>
+  <div class="container-fluid" id="map"></div>
+
+<!--   <div class="row" id="results-row">
+  	<div  class="col-md-1 btn-group dropup" style="float: none; margin: 0 auto; position: fixed; bottom: 0">
+  	<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  	    Resultados
+  	  </button>
+  	  <div class="dropdown-menu" id="results-container">
+  	    <a class="dropdown-item" href="#">Action</a>
+	    <a class="dropdown-item" href="#">Another action</a>
+	    <a class="dropdown-item" href="#">Something else here</a>
+  	  </div> 	
+  </div>
+  </div> -->
+
+  <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0">
+  	<div  class="col-md-1 btn-group dropup" >
+  	<button type="button" class="btn btn-secondary dropdown-toggle" id="results-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="displayResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none">	
+  </div>
+    <div id="results" style="position: fixed; bottom: 0; height: 50%; background-color: white; display: none; width: 100%; float: none; overflow-y: auto">
+    	<div class="row" id="result-row" style="display: none; padding: 1em">
+    		<div class="col-md-1"></div>
+    		<div class="col-md-4">Info</div>
+    		<div class="col-md-7">Extra</div>
+    	</div>
+  	</div>
+  </div>
+  
 
 
   <script src="js/jquery-slim.min.js"></script>
@@ -86,8 +111,28 @@
 		SM.init();
 		
 	}
-	
+   
+    function displayResults(){
+    	var resultsDiv = document.getElementById('results')
+    	var resultsButton = document.getElementById('results-button')
+    	if (resultsDiv.style.display == "none"){
+    		resultsDiv.style.display = "";
+    		resultsButton.style.bottom = resultsDiv.style.height;
+    	}
+    	else{
+    		resultsDiv.style.display = "none";
+    		resultsButton.style.bottom = 0;
+    	}
+    }
+	// var map = document.getElementById('map');
+	// window.addEventListener("resize", resizeMap)
 
+	// function resizeMap(){
+	// 	var map = document.getElementById('map');
+	// 	// var sboxheight = document.getElementById('sbox');
+
+	// 	map.offsetHeight = screen.height - document.getElementById('sbox').offsetHeight;
+	// }
   </script>
   </body>
 </html>
