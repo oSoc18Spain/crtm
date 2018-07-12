@@ -95,6 +95,7 @@
   <script src="js/Station.js"></script>
   <script src="js/StationMap.js"></script>
   <script src="js/GoogleMaps.js"></script>
+  <script src="js/Geo.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg&callback=initmap" async defer></script>
 
@@ -103,12 +104,15 @@
 	  
 	var SM;
 	var GM;
+	var G;
 
 	function init(){
 		
 		SM = new StationMap();
-		
 		SM.init();
+		
+		G = new Geo();
+		G.follow();
 		
 	}
    
@@ -124,15 +128,7 @@
     		resultsButton.style.bottom = 0;
     	}
     }
-	// var map = document.getElementById('map');
-	// window.addEventListener("resize", resizeMap)
 
-	// function resizeMap(){
-	// 	var map = document.getElementById('map');
-	// 	// var sboxheight = document.getElementById('sbox');
-
-	// 	map.offsetHeight = screen.height - document.getElementById('sbox').offsetHeight;
-	// }
   </script>
   </body>
 </html>
