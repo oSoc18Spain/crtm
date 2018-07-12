@@ -15,7 +15,7 @@ var home = {lat: 40.3980136, lng: -3.7282341000000088}; //Atocha
 function initmap(){
 	
 	map = new google.maps.Map(document.getElementById('map'), {
-        center: G.coord(),
+        center: G.position,
         zoom: 12
       });
       
