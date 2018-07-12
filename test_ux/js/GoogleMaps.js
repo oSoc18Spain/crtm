@@ -29,18 +29,22 @@ function searchmap(search, cb){
 
 function searchmap_cb(results, status){
 
+		MAX_RESULTS = 15
+
 		if(status === 'OK'){
 			
 			ll = {lat: results[0].geometry.location.lat(), 
 				lng: results[0].geometry.location.lng()};
 
-			sl = SM.search(ll,1000);
-			
-			console.log(ll.toString());
-			
-			console.log(sl);
-			
-			addstation(sl);
+			// sl = SM.search(ll,1000);
+
+			radius = 100;
+
+			while((sl = SM.search(ll, radius)).length < MAX_RESULTS)
+				radius += 100;
+				addstation(sl);
+
+			sl = sl[0, MAX_RESULTS - 1]
 			
 
 		}else{
