@@ -30,6 +30,13 @@ function searchmap(search, cb){
 		mk.setMap(null);
 	});
 	markers = []
+
+	r = document.getElementsByClassName("result-row")
+
+	while(r.length > 0){
+		r[0].remove();
+	}
+
 	geocoder.geocode({'address': search}, cb);
 }
 
@@ -57,6 +64,7 @@ function searchmap_cb(results, status){
 			sl.forEach(function(elm, idx){
 				var result = document.getElementById('result-row')
 				var clone = result.cloneNode(true)
+				clone.classList.add('result-row')
 				clone.style.display = ""
 				clone.id = result.id + idx
 				var icon = clone.getElementsByClassName("col-md-1")[0]
