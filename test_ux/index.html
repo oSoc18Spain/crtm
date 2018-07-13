@@ -12,32 +12,33 @@
     <style>
 		
     #map{
-		position: absolute;
-		left: 0px;
-		padding: 0px;
-		width: 100%;
-		height: calc(100vh - 60px);
-	} 
-	
-	#sbox{
-		
-		height: 60px;
-		border:none;
-		color: #333;
-		outline: none;
-		
-	}
-	
-	#search{
-		border:none;
-	}
-	
-	#sbut{
-		
-		background: #FFF;
-		height: 60px;
-		padding-top: 1em;
-	}
+      position: absolute;
+      left: 0px;
+      padding: 0px;
+      width: 100%;
+      height: calc(100vh - 60px);
+    } 
+
+    #sbox{
+      height: 60px;
+      border:none;
+      color: #333;
+      outline: none;
+    }
+
+    #search{
+      border:none;
+    }
+
+    #sbut{
+      background: #FFF;
+      height: 60px;
+      padding-top: 1em;
+    }
+
+    #results-button{
+      left: calc(50vw - 12px);
+    }
 		
     </style>
   </head>
@@ -60,8 +61,8 @@
   <div class="container-fluid" id="map"></div>
 
   <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0" id="results-nav">
-  	<div  class="col-md-1 btn-group dropup" >
-  	<button type="button" class="btn btn-secondary dropdown-toggle" id="results-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none">	
+  	<div  class="col-md-1 btn-group dropup" style="padding: 0">
+  	<button type="button" class="btn btn-secondary dropdown-toggle" id="results-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none;">	
   </div>
     <div id="results" style="position: fixed; bottom: 0; height: 50%; background-color: white; display: none; width: 100%; float: none; overflow-y: auto">
       <div class="row" id="result-row" style="display: none; padding: 1em" onclick="showHideResultScreen(this)">
@@ -115,8 +116,10 @@
   	if (resultsDiv.style.display == "none"){
   		resultsDiv.style.display = "";
   		resultsButton.style.bottom = resultsDiv.style.height;
+      resultsButton.parentNode.classList.remove('dropup')
   	}
   	else{
+      resultsButton.parentNode.classList.add('dropup')
   		resultsDiv.style.display = "none";
   		resultsButton.style.bottom = 0;
   	}
