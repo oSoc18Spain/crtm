@@ -4,7 +4,7 @@ var markers;
 
 var home = {lat: 40.3980136, lng: -3.7282341000000088}; //Atocha
 	
-
+var walker;
 
 
 function initmap(){
@@ -17,6 +17,13 @@ function initmap(){
 	geocoder = new google.maps.Geocoder();
 
 	markers = [];
+	
+	walker = {
+		url: '/img/walker.png',
+		size: new google.maps.Size(24, 24),
+		origin: new google.maps.Point(0, 0),
+		anchor: new google.maps.Point(0, 24)
+	};
 	
 }
 
