@@ -69,7 +69,7 @@ function searchmap_cb(results, status){
 				clone.classList.add('result-row')
 				clone.style.display = ""
 				clone.id = result.id + idx
-				var icon = clone.getElementsByClassName("col-md-1")[0]
+				var icon = clone.getElementsByClassName("col-xs-1")[0]
 
 				if(elm['type'] == 0){
 					icon.classList.add("fas")
@@ -81,7 +81,7 @@ function searchmap_cb(results, status){
 					icon.classList.add("fa-bus")
 					icon.classList.add("fa-lg")
 				}
-				var typeStation = clone.getElementsByClassName("col-md-4")[0]
+				var typeStation = clone.getElementsByClassName("col-xs-4")[0]
 				typeStation.innerHTML = elm['name']
 				result.parentNode.appendChild(clone)
 			});

@@ -14,19 +14,17 @@
   </head>
   <body onload="init();">
   
-  <form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="searchmap(document.getElementById('search').value, searchmap_cb);">
-					<div class="input-group" id="sbox">
-						<input type="text" class="form-control" id="search" placeholder="Search">
-						<span class="input-group-btn">
-							
-							<div class="btn btn-default" id="sbut" onclick="searchmap(document.getElementById('search').value, searchmap_cb);">
-								<span class="fas fa-search"></span>
-									<span class="sr-only">Search</span>
-								</span>
-							</div>
-						</span>
-					</div>
-				</form>
+	<form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="searchmap(document.getElementById('search').value, searchmap_cb);">
+		<div class="input-group" id="sbox">
+		<input type="text" class="form-control" id="search" placeholder="Search">
+			<span class="input-group-btn">
+				<div class="btn btn-default" id="sbut" onclick="searchmap(document.getElementById('search').value, searchmap_cb);">
+					<span class="fas fa-search"></span>
+					<span class="sr-only">Search</span>
+				</div>
+			</span>
+		</div>
+	</form>
 	  
   <div class="container-fluid" id="map"></div>
 
@@ -36,9 +34,9 @@
   </div>
     <div id="results" style="position: fixed; bottom: 0; height: 50%; background-color: white; display: none; width: 100%; float: none; overflow-y: auto">
       <div class="row" id="result-row" style="display: none; padding: 1em" onclick="showHideResultScreen(this)">
-        <div class="col-md-1"></div>
-        <div class="col-md-4">Info</div>
-        <div class="col-md-7">Extra</div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-4">Info</div>
+        <div class="col-xs-7">Extra</div>
       </div>
   	</div>
   </div>
