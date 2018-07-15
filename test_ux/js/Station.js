@@ -21,6 +21,11 @@ Station.prototype.coord = function(){
 	return ll;
 	
 }
+Station.prototype.deg2rad = function(deg){
+	
+  return deg * (Math.PI/180);
+  
+}
 
 Station.prototype.dist = function(ref){
 	
@@ -30,10 +35,10 @@ Station.prototype.dist = function(ref){
 	lon2 = this.lng;
 
 	var R = 6371000;
-	var g1 = deg2rad(lat1);
-	var g2 = deg2rad(lat2);
-	var d1 = deg2rad(lat2-lat1);
-	var d2 = deg2rad(lon2-lon1);
+	var g1 = this.deg2rad(lat1);
+	var g2 = this.deg2rad(lat2);
+	var d1 = this.deg2rad(lat2-lat1);
+	var d2 = this.deg2rad(lon2-lon1);
 	
 	var a = Math.sin(d1/2) * Math.sin(d1/2) + Math.cos(g1) * Math.cos(g2) * Math.sin(d2/2) * Math.sin(d2/2);
 	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));

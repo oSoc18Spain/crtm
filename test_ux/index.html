@@ -52,68 +52,19 @@
   <script src="js/jquery-slim.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <script src="js/func.js"></script>
   <script src="js/SPARQL.js"></script>
   <script src="js/Station.js"></script>
   <script src="js/StationMap.js"></script>
   <script src="js/GoogleMaps.js"></script>
   <script src="js/Geo.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg" async defer></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg"></script>
 
+  <script src="js/index.js"></script>
   
   <script>
 	  
-	var SM;
-	var GM;
-	var G;
-
-	function init(){
-		
-		G = new Geo();
-		G.follow();
-		
-		SM = new StationMap();
-		SM.init();
-		
-		initmap();
-		
-	}
-   
-  function showHideResults(){
-  	var resultsDiv = document.getElementById('results')
-  	var resultsButton = document.getElementById('results-button')
-  	if (resultsDiv.style.display == "none"){
-  		resultsDiv.style.display = "";
-  		resultsButton.style.bottom = resultsDiv.style.height;
-      resultsButton.parentNode.classList.remove('dropup')
-  	}
-  	else{
-      resultsButton.parentNode.classList.add('dropup')
-  		resultsDiv.style.display = "none";
-  		resultsButton.style.bottom = 0;
-  	}
-  }
-
-  function showHideResultScreen(elem){
-    
-    console.log(elem.id)
-
-    var resultsnav = document.getElementById('results-nav')
-    var searchbar = document.getElementById('sbox')
-    var resultpage = document.getElementById('results-page')
-
-    if(elem.id.startsWith("result-row")){
-      results.style.display = "none"
-      searchbar.style.display = "none"
-      resultpage.style['z-index'] = 1  
-    }
-    else if(elem.id == "hide-result-page-button"){
-      resultpage.style['z-index'] = -1
-      searchbar.style.display = ""
-      results.style.display = ""
-    }
-  }
+	
   </script>
   </body>
 </html>

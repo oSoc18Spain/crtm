@@ -4,12 +4,7 @@ var markers;
 
 var home = {lat: 40.3980136, lng: -3.7282341000000088}; //Atocha
 	
-/*var bus_img = {
-	url: 'https://raw.githubusercontent.com/encharm/Font-Awesome-SVG-PNG/master/black/png/32/bus.png',
-	size: new google.maps.Size(32, 32),
-	origin: new google.maps.Point(0, 0),
-	anchor: new google.maps.Point(0, 32)
-};*/
+
 
 
 function initmap(){
