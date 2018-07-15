@@ -18,7 +18,7 @@ var SM;
   	var resultsDiv = document.getElementById('results')
   	var resultsButton = document.getElementById('results-button')
   	if (resultsDiv.style.display == "none"){
-  		resultsDiv.style.display = "";
+  		resultsDiv.style.display = "block";
   		resultsButton.style.bottom = resultsDiv.style.height;
       resultsButton.parentNode.classList.remove('dropup')
   	}

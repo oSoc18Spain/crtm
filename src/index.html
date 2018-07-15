@@ -14,7 +14,7 @@
   </head>
   <body onload="init();">
   
-  <form class="navbar-form" role="search">
+  <form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="searchmap(document.getElementById('search').value, searchmap_cb);">
 					<div class="input-group" id="sbox">
 						<input type="text" class="form-control" id="search" placeholder="Search">
 						<span class="input-group-btn">
@@ -51,7 +51,7 @@
 
   <script src="js/index.js"></script>
 
-  <script src="js/vendor/jquery-slim.min.js"></script>
+  <script src="js/vendor/jquery-3.3.1.min.js"></script>
   <script src="js/vendor/popper.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
   <script src="js/SPARQL.js"></script>
