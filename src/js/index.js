@@ -17,13 +17,16 @@ var SM;
   function showHideResults(){
   	var resultsDiv = document.getElementById('results')
   	var resultsButton = document.getElementById('results-button')
+    var mapDiv = document.getElementById('map')
   	if (resultsDiv.style.display == "none"){
   		resultsDiv.style.display = "block";
   		resultsButton.style.bottom = (resultsDiv.offsetHeight - resultsButton.offsetHeight / 2).toString() + "px" ;
+      mapDiv.style.height = (mapDiv.offsetHeight - resultsDiv.offsetHeight).toString() + "px"
       resultsButton.parentNode.classList.remove('dropup')
   	}
   	else{
       resultsButton.parentNode.classList.add('dropup')
+      mapDiv.style.height = (mapDiv.offsetHeight + resultsDiv.offsetHeight).toString() + "px"
   		resultsDiv.style.display = "none";
   		resultsButton.style.bottom = 0;
   	}

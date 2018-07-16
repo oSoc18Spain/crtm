@@ -1,6 +1,7 @@
 var map;
 var geocoder;
 var markers;
+var bounds;
 
 var home = {lat: 40.3980136, lng: -3.7282341000000088}; //Atocha
 	
@@ -46,6 +47,8 @@ function searchmap_cb(results, status){
 
 		MAX_RESULTS = 15
 
+		bounds = new google.maps.LatLngBounds();
+
 		if(status === 'OK'){
 			
 			ll = {lat: results[0].geometry.location.lat(), 
@@ -86,6 +89,8 @@ function searchmap_cb(results, status){
 				result.parentNode.appendChild(clone)
 			});
 
+			map.fitBounds(bounds)
+
 		}else{
 			console.log('Geocode error: ' + status);
 		}
@@ -98,13 +103,15 @@ function addstation(marks){
 
 	for(i = 0; i < marks.length; i++){
 		
-		console.log(marks[i].coord());
+		// console.log(marks[i].coord());
 		
 		var marker = new google.maps.Marker({
 			position: marks[i].coord(),
 			map: map,
 			title: marks[i].name
 		});
+
+		bounds.extend(marker.getPosition());
 
 		marker.setMap(map);
 
