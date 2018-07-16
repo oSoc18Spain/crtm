@@ -1,6 +1,7 @@
 var SM;
-	var GM;
-	var G;
+var GM;
+var G;
+var UX_UI;
 
 	function init(){
 		
@@ -10,7 +11,11 @@ var SM;
 		SM = new StationMap();
 		SM.init();
 		
-		initmap();
+		GM = new GMaps();
+		GM.init();
+		
+		UX_UI = new UI();
+		
 		
 	}
    

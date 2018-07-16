@@ -61,16 +61,17 @@ StationMap.prototype.load_stations_bus_cb = function(data){
 	
 }
 
-StationMap.prototype.search = function(center, distance){
+StationMap.prototype.search = function(center, num){
 	
-	result = new Array();
+	result = this.stations.slice();
 	
-	for(i=0; i < this.stations.length; i++){
-		if(this.stations[i].dist(center) < distance){
-			result.push(this.stations[i]);
-		}
-	}
+	result.sort(function(a,b){ return a.dist(center)-b.dist(center);});
 	
-	return result;
+	result.slice(0,num);
+	
+	console.log(result.slice(0,num));
+	
+	return result.slice(0,num);
 	
 }
+

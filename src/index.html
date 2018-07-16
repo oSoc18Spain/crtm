@@ -13,38 +13,58 @@
 
   </head>
   <body onload="init();">
-  
+	  
+	  
+  <!-- PANTALLA DE BÚSQUEDA -->
+
 	<form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="searchmap(document.getElementById('search').value, searchmap_cb);">
 		<div class="input-group" id="sbox">
 		<input type="text" class="form-control" id="search" placeholder="Search">
 			<span class="input-group-btn">
-				<div class="btn btn-default" id="sbut" onclick="searchmap(document.getElementById('search').value, searchmap_cb);">
-					<span class="fas fa-search"></span>
-					<span class="sr-only">Search</span>
-				</div>
+			<div class="btn btn-default" id="sbut" onclick="UX_UI.search();">
+			<span class="fas fa-search"></span>
+				<span class="sr-only">Search</span>
+				</span>
+			</div>
 			</span>
 		</div>
-	</form>
-	  
-  <div class="container-fluid" id="map"></div>
+  </form>
+
+  <div id="map"></div>
 
   <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0" id="results-nav">
   	<div  class="col-md-1 btn-group dropup" style="padding: 0">
-  	<button type="button" class="btn btn-secondary" id="results-button" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none;">	
+  	<button type="button" class="btn btn-secondary" id="results-button" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none;">
   </div>
     <div id="results" style="position: fixed; bottom: 0; height: 50%; background-color: white; display: none; width: 100%; float: none; overflow-y: auto">
       <div class="row" id="result-row" style="display: none; padding: 1em" onclick="showHideResultScreen(this)">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-4">Info</div>
-        <div class="col-xs-7">Extra</div>
+        <div class="col-md-1"></div>
+        <div class="col-md-4">Info</div>
+        <div class="col-md-7">Extra</div>
       </div>
   	</div>
   </div>
-
+  
   <div class="container-fluid" id="results-page" style="width: 100vw; height: 100vh; background-color: white; position: fixed ; z-index:-1">
-    <button class="btn btn-primary" type="submit" id="hide-result-page-button" onclick="showHideResultScreen(this)">Atrás</button>  
+    <button class="btn btn-primary" type="submit" id="hide-result-page-button" onclick="showHideResultScreen(this)">Atrás</button>
   </div>
   
+  <!-- PANTALLA DE ESTACIÓN -->
+  
+  <div class="slide" id="station_slide" style="display: none;">
+	  <div class="context_head">
+	    <div class="col-md-1 fa fa-subway fas"></div>
+        <div class="col-md-4">Info</div>
+        <div class="col-md-7">Extra</div>
+	  </div>
+	  <div class="content"></div>
+  </div>
+
+
+  <!-- PANTALLA DE ANOTACIONES -->
+  
+  <div class="slide" id="anotate_slide" style="display: none;">
+  </div>
 
 
   <script src="js/index.js"></script>
@@ -56,7 +76,9 @@
   <script src="js/StationMap.js"></script>
   <script src="js/GoogleMaps.js"></script>
   <script src="js/Geo.js"></script>
-  
+  <script src="js/UI.js"></script>
+
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4oS6ld5cfyTqNTC5ADzIrMY3J_jWRILg"></script>
 
   </body>
