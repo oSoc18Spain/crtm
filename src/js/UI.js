@@ -6,11 +6,29 @@ function UI(){
 	
 }
 
-UI.prototype.search = function(){
+UI.prototype.search = function(stp, data){
 	
-	Gsearchmap(document.getElementById('search').value, searchmap_cb);
+	if(stp == undefined){ // Se convierte el texto a unas coordenadas, geocodificación
+		
+		txt = document.getElementById('search').value;
+		GM.geocode(txt, function(data){ UX_UI.search(1,data);});
+		
+	}
 	
-			ll = {
+	if(stp == 1){ // Se pasan las coordenadas a la matriz de estaciones para obtener las cercanas
+		
+		ll = {
+				lat: data[0].geometry.location.lat(), 
+				lng: data[0].geometry.location.lng()
+			};
+
+		sl = SM.search(ll, MAX_RESULTS)
+		
+		GM.addstation(sl);
+			
+	}
+	
+	/*		ll = {
 				lat: results[0].geometry.location.lat(), 
 				lng: results[0].geometry.location.lng()
 			};
@@ -42,7 +60,9 @@ UI.prototype.search = function(){
 				var typeStation = clone.getElementsByClassName("col-md-4")[0]
 				typeStation.innerHTML = elm['name']
 				result.parentNode.appendChild(clone)
-			});
+		});
+
+		*/
 
 
 }

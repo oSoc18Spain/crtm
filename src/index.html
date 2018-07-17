@@ -17,7 +17,7 @@
 	  
   <!-- PANTALLA DE BÚSQUEDA -->
 
-	<form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="searchmap(document.getElementById('search').value, searchmap_cb);">
+	<form class="navbar-form" role="search" action="javascript:void(0);" onsubmit="UX_UI.search();">
 		<div class="input-group" id="sbox">
 		<input type="text" class="form-control" id="search" placeholder="Search">
 			<span class="input-group-btn">
@@ -85,7 +85,7 @@
     </div>
   </div>
 	  
-  <div class="container-fluid" id="map"></div>
+  <div class="container-fluid" id="second_map"></div>
 
   <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0" id="results-nav">
   	<div  class="col-md-1 btn-group dropup" style="padding: 0">

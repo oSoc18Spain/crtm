@@ -1,6 +1,6 @@
-function Station(uri,code,lat,lng,name,type){
+function Station(id,code,lat,lng,name,type){
 	
-	this.uri = uri;
+	this.id = id;
 	this.code = code;
 	this.lat = lat;
 	this.lng = lng;
@@ -59,7 +59,7 @@ Station.prototype.addplatform = function(uri,line,direction,acc_obj){
 	
 	platform = {
 		acc_obj: acc_obj,
-		uri: uri,
+		id: id,
 		line: line,
 		direction: direction
 	}
@@ -72,7 +72,7 @@ Station.prototype.addhalls = function(uri,lat,lng,name,acc_obj){
 	
 	hall = {
 		acc_obj: acc_obj,
-		uri: uri,
+		id: id,
 		lat: lat,
 		lng: lng,
 		name: name
@@ -86,7 +86,7 @@ Station.prototype.addaccess = function(uri,lat,lng,name,acc_obj){
 	
 	access = {
 		acc_obj: acc_obj,
-		uri: uri,
+		id: id,
 		lat: lat,
 		lng: lng,
 		name: name
