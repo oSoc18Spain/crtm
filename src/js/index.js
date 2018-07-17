@@ -1,7 +1,10 @@
 var SM;
 var GM;
 var G;
+<<<<<<< HEAD
 var UX_UI;
+=======
+>>>>>>> e46fad00d36f7231a8313509d0b27a9919b49cb6
 
 	function init(){
 		
@@ -37,22 +40,26 @@ var UX_UI;
   	}
   }
 
-  function showHideResultScreen(elem){
+  function showHideResultScreen(elm){
     
-    console.log(elem.id)
+    console.log(elm.id)
 
-    var resultsnav = document.getElementById('results-nav')
+    var results = document.getElementById('results-nav')
+    var resultDetail = document.getElementById('results-detail')
     var searchbar = document.getElementById('sbox')
-    var resultpage = document.getElementById('results-page')
+    var resultheader = document.getElementById('results-header')
 
-    if(elem.id.startsWith("result-row")){
+    var map = document.getElementById('map')
+
+    if(elm.id.startsWith("result-row")){
       results.style.display = "none"
       searchbar.style.display = "none"
-      resultpage.style['z-index'] = 1  
+      resultDetail.style.display = ""
+      resultheader.style.display = ""
     }
-    else if(elem.id == "hide-result-page-button"){
-      resultpage.style['z-index'] = -1
+    else if(elm.id == "hide-result-page-button"){
+      resultheader.style.display = "none"
       searchbar.style.display = ""
-      results.style.display = ""
+      results.style.display = ""      
     }
   }

@@ -7,6 +7,7 @@ function Station(uri,code,lat,lng,name,type){
 	this.name = name;
 	this.type = type;
 	this.access = new Array();
+	this.
 	this.platforms = new Array();
 	
 }
