@@ -45,40 +45,6 @@ GMaps.prototype.geocode = function(txt, cb){
 	
 }
 
-GMaps.prototype.reset_bounds = function(){
-	
-	
-}
-
-/*GMaps.prototype.search = function(search,cb){
-
-	this.markers.forEach(function(mk){
-		mk.setMap(null);
-	});
-	this.markers = []
-
-	r = document.getElementsByClassName("result-row")
-
-	while(r.length > 0){
-		r[0].remove();
-	}
-
-	this.geocoder.geocode({'address': search}, cb);
-}
-
-GMaps.prototype.searchmap_cb = function(results, status){
-
-		
-
-
-		}else{
-			console.log('Geocode error: ' + status);
-		}
-		
-
-
-}*/
-
 GMaps.prototype.addstation = function(station){
 	
 	this.bounds = new google.maps.LatLngBounds();
@@ -91,9 +57,11 @@ GMaps.prototype.addstation = function(station){
 			title: station[i].name
 		});
 		
-		marker.addListener('click', function() {
-          UX_UI.show_station(station[i].id);
-        });
+		marker.addListener('click', function(id){ 
+			return function(){
+				UX_UI.show_station(id);
+			}	
+		}(station[i].id));
 		
 		this.bounds.extend(station[i].coord());
 
@@ -103,5 +71,14 @@ GMaps.prototype.addstation = function(station){
 	
 	this.map.fitBounds(this.bounds);
 
+}
 
+GMaps.prototype.cleanstation = function(){
+	
+	this.markers.forEach(function(mk){
+		mk.setMap(null);
+	});
+	
+	this.markers = [];
+	
 }

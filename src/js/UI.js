@@ -13,6 +13,12 @@ UI.prototype.search = function(stp, data){
 		txt = document.getElementById('search').value;
 		GM.geocode(txt, function(data){ UX_UI.search(1,data);});
 		
+		r = document.getElementsByClassName("result-row")
+
+		while(r.length > 0){
+			r[0].remove();
+		}
+		
 	}
 	
 	if(stp == 1){ // Se pasan las coordenadas a la matriz de estaciones para obtener las cercanas
@@ -22,29 +28,25 @@ UI.prototype.search = function(stp, data){
 				lng: data[0].geometry.location.lng()
 			};
 
-		sl = SM.search(ll, MAX_RESULTS)
+		sl = SM.search(ll, MAX_RESULTS);
 		
+		SM.load_acc(sl);
+		
+		GM.cleanstation();
 		GM.addstation(sl);
-			
-	}
-	
-	/*		ll = {
-				lat: results[0].geometry.location.lat(), 
-				lng: results[0].geometry.location.lng()
-			};
-
-			sl = SM.search(ll, MAX_RESULTS)
-
-			addstation(sl);
-
-			document.getElementById('results-button').style.display = ""
-			console.log(sl)
+		
+		document.getElementById('results-button').style.display = ""
 			sl.forEach(function(elm, idx){
 				var result = document.getElementById('result-row')
 				var clone = result.cloneNode(true)
 				clone.classList.add('result-row')
 				clone.style.display = ""
 				clone.id = result.id + idx
+				clone.addEventListener('click', function(id){ 
+					return function(){
+						UX_UI.show_station(id);
+					}	
+				}(elm.id));
 				var icon = clone.getElementsByClassName("col-md-1")[0]
 
 				if(elm['type'] == 0){
@@ -61,9 +63,9 @@ UI.prototype.search = function(stp, data){
 				typeStation.innerHTML = elm['name']
 				result.parentNode.appendChild(clone)
 		});
-
-		*/
-
+			
+	}
+	
 
 }
 
@@ -73,7 +75,7 @@ UI.prototype.show_station = function(id){
 
 }
 
-UI.prototype.anotate = function(uri){
+UI.prototype.show_anotate = function(uri){
 	
 	alert("Se muestra la pantalla de anotación para el id: "+id);
 

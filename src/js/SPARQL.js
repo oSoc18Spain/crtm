@@ -19,3 +19,31 @@ SPARQL.prototype.run = function(cb, ctx){
 	req.done(cb);
 			
 }
+
+SPARQL.prototype.build_in = function(list){
+	
+	in_ret = "";
+	
+	for(i = 0; i < list.length; i++){
+		
+		if(i == (list.length-1)){
+			
+			in_ret = in_ret + "'"+list[i].id+"')";
+			
+		}
+		
+		if(i == 0){
+			
+			in_ret = "('"+list[i].id+"',";
+			
+		}
+		
+		if(i != 0 && i != (list.length-1)){
+			
+			in_ret = "'"+list[i].id+"'";
+			
+		}
+		
+	}
+			
+}
