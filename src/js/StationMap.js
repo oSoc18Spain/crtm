@@ -71,12 +71,12 @@ StationMap.prototype.load_acc = function(st_arr, data){
 	
 	if(data != undefined){
 		
-		console.log(data);
+		console.log(data.results.bindings);
 		
 	}else{
 		
-		bus_stops = st_arr.filter(function(i){ return i.type == 0 });
-		metro_stops = st_arr.filter(function(i){ return i.type == 1 });
+		bus_stops = st_arr.filter(function(i){ return i.type == 1 });
+		metro_stops = st_arr.filter(function(i){ return i.type == 0 });
 	
 		q_bus = new SPARQL();
 		
@@ -106,34 +106,38 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		q_bus.query = qtxt;	
 		q_bus.run(function(data){ SM.load_acc(bus_stops, data);}, this);
 		
+		/*
 		
 		q_metro = new SPARQL();
 		
 		qtxt = "PREFIX tran: <http://transacc.linkeddata.es/def/core#> \
-		PREFIX gtfs: <http://vocab.gtfs.org/terms#>\
-		PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\
-		PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
-		PREFIX foaf:<http://xmlns.com/foaf/0.1/> \
-		select * where { \
-		?busStop rdf:type tran:BusStop . \
-		?busStop geo:lat ?lat . \
-		?busStop geo:long ?long . \
-		?busStop gtfs:stopId ?id .\
-		filter(?id in "+q_metro.build_in(metro_stops)+") .\
-		?busStop gtfs:code ?code . \
-		?busStop foaf:name ?name . \
-		?busStop gtfs:weelchairAccessible ?weelchairAccessible . \
-		  optional {?busStop tran:typeBusStop ?typeBusStop} . \
-		  optional {?busStop tran:specialPavementBorder ?specialPavementBorder} . \
-		  optional {?busStop tran:seats ?seats} . \
-		  optional {?busStop tran:isquialSupports ?isquialSupports} . \
-		  optional {?busStop tran:spaceWheelchair ?spaceWheelchair} \
-		}";
-		
+				PREFIX gtfs: <http://vocab.gtfs.org/terms#>\
+				PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\
+				PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>\
+				PREFIX foaf:<http://xmlns.com/foaf/0.1/> \
+				PREFIX dct:<http://purl.org/dc/terms/>\
+					select * where {\
+					?ind a tran:Platform .    \
+					?ind tran:toRoute ?route  .\
+					?ind tran:toStation ?station .\
+					?station gtfs: 'COLOMBIA' .\
+					?ind tran:headsign ?headsign .\
+					?station foaf:name ?name .\
+					?route gtfs:shortName ?lineNum . \
+					?route gtfs:longName ?lineName .\
+				   optional {?ind tran:typePlatform ?type} . \
+				  optional {?ind tran:specialPavementBorder ?spb} . \
+				  optional {?ind tran:seats ?seats} . \
+				  optional {?ind tran:isquialSupports ?isquial} . \
+				  optional {?ind tran:spaceWheelchair ?spacew} \
+				}";
+						
 		console.log(qtxt);
 			
 		q_metro.query = qtxt;	
 		q_metro.run(function(data){ SM.load_acc(metro_stops, data);}, this);
+		* 
+		*/
 		
 	}
 
