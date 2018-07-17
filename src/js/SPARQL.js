@@ -13,7 +13,7 @@ SPARQL.prototype.run = function(cb, ctx){
 		type: "GET",
 		dataType: "json",
 		context: ctx,
-		url: "http://oasis.summerofcode.oeg-upm.net/sparql",
+		url: "http://oasis.summerofcode.oeg-upm.net/virtuoso/sparql",
 	});
 	
 	req.done(cb);
