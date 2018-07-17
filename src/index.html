@@ -25,13 +25,28 @@
 			</span>
 		</div>
 	</form>
+
+  <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0; display: none">
+    <div class="btn-group dropleft">
+      <button type="button" id="hide-result-page-button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResultScreen(this)">
+      </button> 
+    </div> 
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-primary">GENERAL</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-primary">ACCESIBILIDAD</button>
+      </div>
+    </div>
+  </div>
 	  
   <div class="container-fluid" id="map"></div>
 
   <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0" id="results-nav">
   	<div  class="col-md-1 btn-group dropup" style="padding: 0">
-  	<button type="button" class="btn btn-secondary dropdown-toggle" id="results-button" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none;">	
-  </div>
+  	 <button type="button" class="btn btn-secondary dropdown-toggle" id="results-button" aria-haspopup="true" aria-expanded="false" onclick="showHideResults()" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none; z-index: 1">	
+    </div>
     <div id="results" style="position: fixed; bottom: 0; height: 50%; background-color: white; display: none; width: 100%; float: none; overflow-y: auto; padding-top: 1.3em">
       <div class="row" id="result-row" style="display: none; margin: 0; padding: 1em;" onclick="showHideResultScreen(this)">
         <div class="col-xs-1" style="margin-right: 1em;"></div>
@@ -39,12 +54,13 @@
         <div class="col-xs-7"></div>
       </div>
   	</div>
-  </div>
+  </div> 
 
-  <div class="container-fluid" id="results-page" style="width: 100vw; height: 100vh; background-color: white; position: fixed ; z-index:-1">
-    <button class="btn btn-primary" type="submit" id="hide-result-page-button" onclick="showHideResultScreen(this)">Atrás</button>  
-  </div>
-  
+  <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none" id="results-detail">
+      <div class="row" id="result-row" style="display: none; margin: 0; padding: 1em;">
+      </div>
+    </div>
+  </div> 
 
 
   <script src="js/index.js"></script>
