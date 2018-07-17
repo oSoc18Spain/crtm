@@ -84,19 +84,16 @@ GMaps.prototype.addstation = function(station){
 	this.bounds = new google.maps.LatLngBounds();
 
 	for(i = 0; i < station.length; i++){
-		
-		// console.log(station[i].coord());
-		
-		var marker = new google.maps.Marker({
+				
+		marker = new google.maps.Marker({
 			position: station[i].coord(),
 			map: this.map,
 			title: station[i].name
 		});
 		
 		marker.addListener('click', function() {
-          console.log("Call to UX_UI.show_station("+station[i].id+");");
+          UX_UI.show_station(station[i].id);
         });
-
 		
 		this.bounds.extend(station[i].coord());
 

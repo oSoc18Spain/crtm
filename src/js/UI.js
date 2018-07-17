@@ -67,11 +67,14 @@ UI.prototype.search = function(stp, data){
 
 }
 
-UI.prototype.station = function(uri){
-
+UI.prototype.show_station = function(id){
+	
+	alert("Se muestra la estación con id: "+id);
 
 }
 
 UI.prototype.anotate = function(uri){
+	
+	alert("Se muestra la pantalla de anotación para el id: "+id);
 
 }
