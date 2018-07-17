@@ -10,7 +10,7 @@ SPARQL.prototype.run = function(cb, ctx){
 	
 	req = $.ajax({
 		data: {"query" : this.query, "format" : "json"},
-		type: "GET",
+		type: "POST",
 		dataType: "json",
 		context: ctx,
 		url: "http://oasis.summerofcode.oeg-upm.net/virtuoso/sparql",
