@@ -15,7 +15,7 @@ var UX_UI;
 		GM.init();
 		
 		UX_UI = new UI();
-		
+		UX_UI.checkCookie('disability');
 		
 	}
    

@@ -13,7 +13,34 @@
 
   </head>
   <body onload="init();">
-	  
+	
+  <!-- PANTALLA DE BIENVENIDA -->
+  <div id="welcome-screen" class="row h-100 w-100 align-items-center" style="background-color: rgba(0,0,0,0.7); position: absolute; z-index: 2; margin: 0">
+    <div class="col" style="background-color: white; height: 3em; width: 3em; margin: 10%; height: 20%; padding: 1em">
+      Seleccione el tipo de discapacidad:
+
+      <form class="navbar-form" role="search" action="javascript:void(0);">
+        <select id="disability-option">
+          <option value="">Seleccione</option>
+          <option value="V">Visual</option>
+          <option value="A">Auditiva</option>
+          <option value="M">Movilidad</option>
+          <option value="W">Silla de ruedas</option>
+        </select>
+
+        <div class="row" style="position: absolute; bottom: 1em">
+          <div class="col">
+            <button type="button" id="set-cookie-button" class="btn btn-primary" onclick="UX_UI.setCookie(this,'disability')">Aceptar</button>
+          </div>
+          <div class="col">
+            <button type="button" id="not-now-cookie-button" class="btn btn-primary" onclick="UX_UI.setCookie(this, 'disability')">Ahora no</button>
+          </div>
+        </div>
+      </form>
+
+      
+    </div>
+  </div>  
 	  
   <!-- PANTALLA DE BÚSQUEDA -->
 
@@ -42,7 +69,6 @@
         <div class="col-md-1"></div>
         <div class="col-md-4">Info</div>
         <div class="col-md-7">Extra</div>
-
       </div>
   	</div>
   </div>
@@ -54,12 +80,23 @@
   <!-- PANTALLA DE ESTACIÓN -->
   
   <div class="slide" id="station_slide" style="display: none;">
-	  <div class="context_head">
-	    <div class="col-md-1 fa fa-subway fas"></div>
-        <div class="col-md-4">Info</div>
-        <div class="col-md-7">Extra</div>
-	  </div>
-	  <div class="content"></div>
+	  <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0;">
+      <div class="btn-group dropleft">
+        <button type="button" id="hide-result-page-button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResultScreen(this)">
+        </button> 
+      </div> 
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-primary">GENERAL</button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-primary">ACCESIBILIDAD</button>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0;" id="results-detail">
+        <div class="row" id="result-row" style="display: none; margin: 0; padding: 1em;"></div>
+    </div>
   </div>
 
 
@@ -67,8 +104,6 @@
   
   <div class="slide" id="anotate_slide" style="display: none;">
   </div>
-
-	</form>
 
   <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0; display: none">
     <div class="btn-group dropleft">

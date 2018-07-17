@@ -65,8 +65,6 @@ UI.prototype.search = function(stp, data){
 		});
 			
 	}
-	
-
 }
 
 UI.prototype.show_station = function(id){
@@ -80,3 +78,25 @@ UI.prototype.show_anotate = function(uri){
 	alert("Se muestra la pantalla de anotación para el id: "+id);
 
 }
+
+UI.prototype.setCookie = function(elm, cname){
+	if(elm.id == 'set-cookie-button'){
+		var value = document.getElementById('disability-option').value
+
+		if(value != ""){
+			localStorage.setItem(cname, value);
+		}
+	}
+	var welcomeScreen = document.getElementById('welcome-screen')
+	welcomeScreen.style['z-index'] = -1
+}
+
+UI.prototype.checkCookie = function(cname){
+	var cvalue = localStorage.getItem(cname);
+    if (cname = 'disability' && cvalue != null) {
+    	var welcomeScreen = document.getElementById('welcome-screen')
+    	welcomeScreen.style['z-index'] = -1
+    }
+}
+
+
