@@ -1,10 +1,7 @@
 var SM;
 var GM;
 var G;
-<<<<<<< HEAD
 var UX_UI;
-=======
->>>>>>> e46fad00d36f7231a8313509d0b27a9919b49cb6
 
 	function init(){
 		
