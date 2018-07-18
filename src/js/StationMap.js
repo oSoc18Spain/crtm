@@ -81,7 +81,8 @@ StationMap.prototype.load_acc = function(st_arr, data){
 									data[i].specialPavementBorder ? data[i].specialPavementBorder.value : undefined,
 									data[i].seats ? data[i].seats.value : undefined,
 									data[i].isquialSupports ? data[i].isquialSupports.value : undefined,
-									data[i].spaceWheelchair ? data[i].spaceWheelchair.value : undefined);
+									data[i].spaceWheelchair ? data[i].spaceWheelchair.value : undefined,
+									data[i].state ? data[i].state.value : undefined);
 			
 			for(j = 0; j < this.stations.length; j++){
 								
@@ -123,6 +124,7 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		  optional {?busStop tran:specialPavementBorder ?specialPavementBorder} . \
 		  optional {?busStop tran:seats ?seats} . \
 		  optional {?busStop tran:isquialSupports ?isquialSupports} . \
+		  optional {?busStop tran:state ?state} . \
 		  optional {?busStop tran:spaceWheelchair ?spaceWheelchair} \
 		}";
 		
