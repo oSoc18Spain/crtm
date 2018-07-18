@@ -225,42 +225,29 @@ StationMap.prototype.anotate = function(id,acc_data){
 			PREFIX gtfs: <http://vocab.gtfs.org/terms#>
 			PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-			DELETE {
-			   
-			GRAPH ?g {
-
-			   ${qpart1}
-
-			}
-
+			DELETE {   
+				GRAPH ?g {
+				   ${qpart1}
+				}
 			}
 
 			INSERT {
-
-			GRAPH ?g {
-			   
-			   ${qpart2}
-
-			   
-			}
-
+				GRAPH ?g {  
+				   ${qpart2}  
+				}
 			}
 
 			WHERE{ 
-
-			GRAPH ?g {
-
-			   ?ind gtfs:stopId "${id}" .
-			   optional{?ind tran:typeBusStop ?typeBusStop }. 
-			   optional{?ind tran:specialPavementBorder ?specialPavementBorder }.  
-			   optional{?ind tran:seats ?seats }. 
-			   optional{?ind tran:isquialSupports ?isquialSupports }.  
-			   optional{?ind tran:state ?state }. 
-			   optional{?ind tran:dateLastAnnot ?dateLastAnnot }.  
-			   optional{?ind tran:spaceWheelchair ?spaceWheelchair}
-
-			}
-
+				GRAPH ?g {
+				   ?ind gtfs:stopId "${id}" .
+				   optional{?ind tran:typeBusStop ?typeBusStop }. 
+				   optional{?ind tran:specialPavementBorder ?specialPavementBorder }.  
+				   optional{?ind tran:seats ?seats }. 
+				   optional{?ind tran:isquialSupports ?isquialSupports }.  
+				   optional{?ind tran:state ?state }. 
+				   optional{?ind tran:dateLastAnnot ?dateLastAnnot }.  
+				   optional{?ind tran:spaceWheelchair ?spaceWheelchair}
+				}
 			}`;
 			
 		console.log(qtxt);
