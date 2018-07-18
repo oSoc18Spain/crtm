@@ -1,4 +1,4 @@
-function Accessibility(type,spb,seats,is,swc,st){
+function Accessibility(type,spb,seats,is,swc,st,dla){
 	
 	this.type = type;
 	this.specialPavementBorder = spb;
