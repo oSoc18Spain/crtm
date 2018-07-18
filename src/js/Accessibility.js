@@ -6,5 +6,6 @@ function Accessibility(type,spb,seats,is,swc,st){
 	this.isquialSupports = is;
 	this.spaceWheelchair = swc;
 	this.state = st;
+	this.dateLastAnnot = dla;
 
 }
