@@ -87,7 +87,7 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		
 		for(i=0; i < data.length; i++){
 			
-			acc = new Accessibility(data[i].typeBusStop ? data[i].typeBusStop.value : undefined,
+			acc = new Accessibility(data[i].typeBusStop ? {bus: data[i].typeBusStop.value} : undefined,
 									data[i].specialPavementBorder ? data[i].specialPavementBorder.value : undefined,
 									data[i].seats ? data[i].seats.value : undefined,
 									data[i].isquialSupports ? data[i].isquialSupports.value : undefined,
@@ -198,11 +198,11 @@ StationMap.prototype.anotate = function(id,acc_data){
 	
 	qpart1 = "";
 	
-	acc_data.typeBusStop ? qpart1 = qpart1 + "?ind tran:typeBusStop ?typeBusStop . ":undefined;
-	acc_data.specialPavementBorder ? qpart1 = qpart1 + "?ind tran:specialPavementBorder ?specialPavementBorder . ":undefined;
-	acc_data.seats ? qpart1 = qpart1 + "?ind tran:seats ?seats . ":undefined;
-	acc_data.isquialSupports ? qpart1 = qpart1 + "?ind tran:isquialSupports ?isquialSupports . ":undefined;
-	acc_data.spaceWheelchair ? qpart1 = qpart1 + "?ind tran:spaceWheelchair ?spaceWheelchair . ":undefined;
+	acc_data.type && acc_data.type.bus ? qpart1 = qpart1 + "?ind tran:typeBusStop ?typeBusStop . ":undefined;
+	acc_data.specialPavementBorder != undefined ? qpart1 = qpart1 + "?ind tran:specialPavementBorder ?specialPavementBorder . ":undefined;
+	acc_data.seats != undefined ? qpart1 = qpart1 + "?ind tran:seats ?seats . ":undefined;
+	acc_data.isquialSupports != undefined ? qpart1 = qpart1 + "?ind tran:isquialSupports ?isquialSupports . ":undefined;
+	acc_data.spaceWheelchair != undefined ? qpart1 = qpart1 + "?ind tran:spaceWheelchair ?spaceWheelchair . ":undefined;
 	acc_data.state ? qpart1 = qpart1 + "?ind tran:state ?state . ":undefined;
 	acc_data.dateLastAnnot ? qpart1 = qpart1 + "?ind tran:dateLastAnnot ?dateLastAnnot . ":undefined;
 	
@@ -210,11 +210,11 @@ StationMap.prototype.anotate = function(id,acc_data){
 	
 	qpart2 = "";
 	
-	acc_data.typeBusStop ? qpart2 = qpart2 + "?ind tran:typeBusStop \""+acc_data.typeBusStop+"\" . ":undefined;
-	acc_data.specialPavementBorder ? qpart2 = qpart2 + "?ind tran:specialPavementBorder \""+acc_data.specialPavementBorder+"\"^^xsd:boolean . ":undefined;
-	acc_data.seats ? qpart2 = qpart2 + "?ind tran:seats \""+acc_data.seats+"\"^^xsd:boolean . ":undefined;
-	acc_data.isquialSupports ? qpart2 = qpart2 + "?ind tran:isquialSupports \""+acc_data.isquialSupports+"\"^^xsd:boolean . ":undefined;
-	acc_data.spaceWheelchair ? qpart2 = qpart2 + "?ind tran:spaceWheelchair \""+acc_data.spaceWheelchair+"\"^^xsd:boolean . ":undefined;
+	acc_data.type && acc_data.type.bus ? qpart2 = qpart2 + "?ind tran:typeBusStop \""+acc_data.type.bus+"\" . ":undefined;
+	acc_data.specialPavementBorder != undefined ? qpart2 = qpart2 + "?ind tran:specialPavementBorder \""+acc_data.specialPavementBorder+"\"^^xsd:boolean . ":undefined;
+	acc_data.seats != undefined ? qpart2 = qpart2 + "?ind tran:seats \""+acc_data.seats+"\"^^xsd:boolean . ":undefined;
+	acc_data.isquialSupports != undefined ? qpart2 = qpart2 + "?ind tran:isquialSupports \""+acc_data.isquialSupports+"\"^^xsd:boolean . ":undefined;
+	acc_data.spaceWheelchair != undefined ? qpart2 = qpart2 + "?ind tran:spaceWheelchair \""+acc_data.spaceWheelchair+"\"^^xsd:boolean . ":undefined;
 	acc_data.state ? qpart2 = qpart2 + "?ind tran:state \""+acc_data.state+"\" . ":undefined;
 	acc_data.dateLastAnnot ? qpart2 = qpart2 + "?ind tran:dateLastAnnot \""+acc_data.dateLastAnnot+"\"^^xsd:date . ":undefined;
 	
@@ -225,20 +225,22 @@ StationMap.prototype.anotate = function(id,acc_data){
 			PREFIX gtfs: <http://vocab.gtfs.org/terms#>
 			PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
+			WITH <http://localhost:8890/bus-emt>
+
 			DELETE {   
-				GRAPH ?g {
+
 				   ${qpart1}
-				}
+
 			}
 
 			INSERT {
-				GRAPH ?g {  
+
 				   ${qpart2}  
-				}
+				
 			}
 
 			WHERE{ 
-				GRAPH ?g {
+
 				   ?ind gtfs:stopId "${id}" .
 				   optional{?ind tran:typeBusStop ?typeBusStop }. 
 				   optional{?ind tran:specialPavementBorder ?specialPavementBorder }.  
@@ -247,8 +249,12 @@ StationMap.prototype.anotate = function(id,acc_data){
 				   optional{?ind tran:state ?state }. 
 				   optional{?ind tran:dateLastAnnot ?dateLastAnnot }.  
 				   optional{?ind tran:spaceWheelchair ?spaceWheelchair}
-				}
+				
 			}`;
 			
 		console.log(qtxt);
+		
+		q = new SPARQL(qtxt);
+		
+		q.run();
 }

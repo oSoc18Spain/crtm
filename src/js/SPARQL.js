@@ -12,11 +12,11 @@ SPARQL.prototype.run = function(cb, ctx){
 		data: {"query" : this.query, "format" : "json"},
 		type: "POST",
 		dataType: "json",
-		context: ctx,
+		context: ctx ? ctx : undefined,
 		url: "https://oasis.summerofcode.oeg-upm.net/virtuoso/sparql",
 	});
 	
-	req.done(cb);
+	req.done(cb ? cb : undefined);
 			
 }
 
