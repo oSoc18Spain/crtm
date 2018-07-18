@@ -11,6 +11,16 @@ StationMap.prototype.init = function(){
 	
 }
 
+StationMap.prototype.getStationById = function(id){
+	
+	for(i=0; i < this.stations.length; i++){			
+		if(this.stations[i].id == id){
+			return this.stations[i];
+		}
+	}
+	
+}
+
 StationMap.prototype.load_stations_metro = function(data){
 	
 	if(data != undefined){

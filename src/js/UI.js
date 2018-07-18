@@ -90,8 +90,12 @@ UI.prototype.search = function(stp, data){
 }
 
 UI.prototype.show_station = function(id){
+	
+	console.log("Show station: "+id);
 
 	var c = SM.stations.filter(station => station.id == id)[0];
+
+	console.log(c);
 
 	bounds = new google.maps.LatLngBounds();
 	bounds.extend(c.coord());
@@ -108,7 +112,7 @@ UI.prototype.show_station = function(id){
 	DM.map.fitBounds(bounds)
 
 }
-
+	
 UI.prototype.show_anotate = function(uri){
 	
 	alert("Se muestra la pantalla de anotación para el id: " + id);
