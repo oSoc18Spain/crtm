@@ -184,3 +184,74 @@ StationMap.prototype.search = function(center, num){
 	
 }
 
+StationMap.prototype.anotate = function(id,acc_data){
+	
+	qpart1 = "";
+	
+	acc_data.typeBusStop ? qpart1 = qpart1 + "?ind tran:typeBusStop ?typeBusStop .";
+	acc_data.specialPavementBorder ? qpart1 = qpart1 + "?ind tran:specialPavementBorder ?specialPavementBorder .";
+	acc_data.seats ? qpart1 = qpart1 + "?ind tran:seats ?seats .";
+	acc_data.isquialSupports ? qpart1 = qpart1 + "?ind tran:isquialSupports ?isquialSupports .";
+	acc_data.spaceWheelchair ? qpart1 = qpart1 + "?ind tran:spaceWheelchair ?spaceWheelchair .";
+	acc_data.state ? qpart1 = qpart1 + "?ind tran:state ?state .";
+	acc_data.dateLastAnnot ? qpart1 = qpart1 + "?ind tran:dateLastAnnot ?dateLastAnnot .";
+	
+	qpart1 = qpart1.substr(0, qpart1.length-2);
+	
+	qpart2 = "";
+	
+	acc_data.typeBusStop ? qpart2 = qpart2 + "?ind tran:typeBusStop "+acc_data.typeBusStop+" .";
+	acc_data.specialPavementBorder ? qpart2 = qpart2 + "?ind tran:specialPavementBorder "+acc_data.specialPavementBorder+" .";
+	acc_data.seats ? qpart2 = qpart2 + "?ind tran:seats "+acc_data.seats+" .";
+	acc_data.isquialSupports ? qpart2 = qpart2 + "?ind tran:isquialSupports "+acc_data.isquialSupports+" .";
+	acc_data.spaceWheelchair ? qpart2 = qpart2 + "?ind tran:spaceWheelchair "+acc_data.spaceWheelchair+" .";
+	acc_data.state ? qpart2 = qpart2 + "?ind tran:state "+acc_data.state+" .";
+	acc_data.dateLastAnnot ? qpart2 = qpart2 + "?ind tran:dateLastAnnot "+acc_data.dateLastAnnot+" .";
+	
+	qpart2 = qpart2.substr(0, qpart1.length-2);
+	
+	
+	qtxt = `'PREFIX tran: <http://transacc.linkeddata.es/def/core#> 
+			PREFIX gtfs: <http://vocab.gtfs.org/terms#>
+			PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+			DELETE {
+			   
+			GRAPH ?g {
+
+			   ${qpart1}
+
+			}
+
+			}
+
+			INSERT {
+
+			GRAPH ?g {
+			   
+			   ${qpart2}
+
+			   
+			}
+
+			}
+
+			WHERE{ 
+
+			GRAPH ?g {
+
+			   ?ind gtfs:stopId "${id}" .
+			   optional{?ind tran:typeBusStop ?typeBusStop }. 
+			   optional{?ind tran:specialPavementBorder ?specialPavementBorder }.  
+			   optional{?ind tran:seats ?seats }. 
+			   optional{?ind tran:isquialSupports ?isquialSupports }.  
+			   optional{?ind tran:state ?state }. 
+			   optional{?ind tran:dateLastAnnot ?dateLastAnnot }.  
+			   optional{?ind tran:spaceWheelchair ?spaceWheelchair}
+
+			}
+
+			}`;
+			
+		console.log(qtxt);
+}
