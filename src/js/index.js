@@ -3,21 +3,21 @@ var GM;
 var G;
 var UX_UI;
 
-	function init(){
+function init(){
 		
-		G = new Geo();
-		G.follow();
+	G = new Geo();
+	G.follow();
 		
-		SM = new StationMap();
-		SM.init();
+	SM = new StationMap();
+	SM.init();
 		
-		GM = new GMaps();
-		GM.init();
+	GM = new GMaps();
+	GM.init();
 		
-		UX_UI = new UI();
-		UX_UI.checkCookie('disability');
+	UX_UI = new UI();
+	UX_UI.checkCookie('disability');
 		
-	}
+}
    
   function showHideResults(){
   	var resultsDiv = document.getElementById('results')
