@@ -23,10 +23,10 @@ Accessibility.prototype.getindex = function(){
 	
 	index = 0;
 	
-	this.specialPavementBorder ? index ++; undefined;
-	this.seats ? index ++; undefined;
-	this.isquialSupports ? index ++; undefined;
-	this.spaceWheelchair ? index ++; undefined;
+	this.specialPavementBorder ? index ++: undefined;
+	this.seats ? index ++: undefined;
+	this.isquialSupports ? index ++: undefined;
+	this.spaceWheelchair ? index ++: undefined;
 	
 	return index;
 	
