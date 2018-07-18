@@ -27,10 +27,8 @@ function init(){
   		resultsDiv.style.display = "block";
   		resultsButton.style.bottom = (resultsDiv.offsetHeight - resultsButton.offsetHeight / 2).toString() + "px" ;
       mapDiv.style.height = (mapDiv.offsetHeight - resultsDiv.offsetHeight).toString() + "px"
-      resultsButton.parentNode.classList.remove('dropup')
   	}
   	else{
-      resultsButton.parentNode.classList.add('dropup')
       mapDiv.style.height = (mapDiv.offsetHeight + resultsDiv.offsetHeight).toString() + "px"
   		resultsDiv.style.display = "none";
   		resultsButton.style.bottom = 0;

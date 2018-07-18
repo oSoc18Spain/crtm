@@ -12,6 +12,10 @@
     padding: 10px;
     
 }
+.row{
+	margin-left: 0;
+	margin-right: 0;
+}
 
 /* BÚSQUEDA */
 
@@ -52,5 +56,5 @@
 }
 
 #results-button{
-      left: calc(50vw - 12px);
+  	left: calc(50vw - 12px);
 }

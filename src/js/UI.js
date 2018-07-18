@@ -42,7 +42,6 @@ UI.prototype.search = function(stp, data){
 				clone.addEventListener('click', function(id){ 
 					return function(){
 						UX_UI.show_station(id);
-						UX_UI.displayScreen('station_slide');
 					}	
 				}(elm.id));
 				var icon = clone.getElementsByClassName("col-xs-1")[0]
@@ -95,22 +94,34 @@ UI.prototype.show_station = function(id){
 
 	var c = SM.stations.filter(station => station.id == id)[0];
 
-	console.log(c);
-
 	bounds = new google.maps.LatLngBounds();
-	bounds.extend(c.coord());
-
 	DM = new GMaps();
 	DM.init('second_map');
+
+	bounds.extend(c.coord());
+
+	c.access.forEach(function(ac){
+		a_marker = new google.maps.Marker({
+			position: ac.coord(),
+			map: DM.map,
+			title: ac.name
+		}); 
+		bounds.extend(ac.coord());
+	})
 
 	marker = new google.maps.Marker({
 			position: c.coord(),
 			map: DM.map,
 			title: c.name
-		});
+	});
 
 	DM.map.fitBounds(bounds)
 
+	//Avoid excessive zoom when a station is displayed
+	if (c.type == 1)	//Bus station
+		DM.map.setZoom(DM.map.getZoom() - 2)
+
+	UX_UI.displayScreen('station_slide');
 }
 	
 UI.prototype.show_anotate = function(uri){
@@ -140,11 +151,20 @@ UI.prototype.checkCookie = function(cname){
 }
 
 UI.prototype.displayScreen = function(id_screen){
-	if(id_screen == "station_slide"){
-		stationScreen = document.getElementById(id_screen)
-		stationScreen.style.display = ""
-		stationScreen.style['z-index'] = 1
+
+	slides = document.getElementsByClassName('slide')
+
+	for (var i = 0 ; i < slides.length ; i++){
+		if(id_screen == slides[i].id){
+			screen = document.getElementById(id_screen)
+			screen.style.display = ""
+			screen.style['z-index'] = 1
+		}
+		else{
+			slides[i].style['z-index'] = 0
+		}
 	}
+		
 }
 
 
