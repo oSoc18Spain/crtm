@@ -82,7 +82,7 @@ StationMap.prototype.load_acc = function(st_arr, data){
 									data[i].seats ? data[i].seats.value : undefined,
 									data[i].isquialSupports ? data[i].isquialSupports.value : undefined,
 									data[i].spaceWheelchair ? data[i].spaceWheelchair.value : undefined,
-									data[i].state ? data[i].state.value : undefined
+									data[i].state ? data[i].state.value : undefined,
 									data[i].dateLastAnnot ? data[i].dateLastAnnot.value : undefined);
 			
 			for(j = 0; j < this.stations.length; j++){
