@@ -42,6 +42,7 @@ UI.prototype.search = function(stp, data){
 				clone.addEventListener('click', function(id){ 
 					return function(){
 						UX_UI.show_station(id);
+						UX_UI.displayScreen('station_slide');
 					}	
 				}(elm.id));
 				var icon = clone.getElementsByClassName("col-xs-1")[0]
@@ -89,8 +90,22 @@ UI.prototype.search = function(stp, data){
 }
 
 UI.prototype.show_station = function(id){
-	
-	alert("Se muestra la estación con id: "+id);
+
+	var c = SM.stations.filter(station => station.id == id)[0];
+
+	bounds = new google.maps.LatLngBounds();
+	bounds.extend(c.coord());
+
+	DM = new GMaps();
+	DM.init('second_map');
+
+	marker = new google.maps.Marker({
+			position: c.coord(),
+			map: DM.map,
+			title: c.name
+		});
+
+	DM.map.fitBounds(bounds)
 
 }
 
@@ -118,6 +133,14 @@ UI.prototype.checkCookie = function(cname){
     	var welcomeScreen = document.getElementById('welcome-screen')
     	welcomeScreen.style['z-index'] = -1
     }
+}
+
+UI.prototype.displayScreen = function(id_screen){
+	if(id_screen == "station_slide"){
+		stationScreen = document.getElementById(id_screen)
+		stationScreen.style.display = ""
+		stationScreen.style['z-index'] = 1
+	}
 }
 
 

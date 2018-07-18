@@ -12,7 +12,7 @@ function init(){
 	SM.init();
 		
 	GM = new GMaps();
-	GM.init();
+	GM.init('map');
 		
 	UX_UI = new UI();
 	UX_UI.checkCookie('disability');

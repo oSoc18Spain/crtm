@@ -18,12 +18,12 @@ function GMaps(){
 	
 }
 
-GMaps.prototype.init = function(){
+GMaps.prototype.init = function(id, center, zoom){
 
 	
-	this.map = new google.maps.Map(document.getElementById('map'), {
-        center: G.position,
-        zoom: 12
+	this.map = new google.maps.Map(document.getElementById(id), {
+        center: center == undefined ? G.position : center,
+        zoom: zoom == undefined ? 12 : zoom
       });
       
 	this.geocoder = new google.maps.Geocoder();

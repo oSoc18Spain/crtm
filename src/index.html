@@ -72,12 +72,9 @@
   
   <!-- PANTALLA DE ESTACIÓN -->
   
-  <div class="slide" id="station_slide" style="display: none;">
+  <div class="slide" id="station_slide" style="display: none; padding: 0">
 	  <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0;">
-      <div class="btn-group dropleft">
-        <button type="button" id="hide-result-page-button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResultScreen(this)">
-        </button> 
-      </div> 
+      <button type="button" id="results-button" class="btn btn-primary fas fa-arrow-left" onclick="showHideResultScreen(this)"></button>
       <div class="row">
         <div class="col">
           <button type="button" class="btn btn-primary">GENERAL</button>
@@ -87,6 +84,7 @@
         </div>
       </div>
     </div>
+    <div id="second_map"></div>
     <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0;" id="results-detail">
         <div class="row" id="result-row" style="display: none; margin: 0; padding: 1em;"></div>
     </div>
@@ -98,7 +96,7 @@
   <div class="slide" id="anotate_slide" style="display: none;">
   </div>
 
-  <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0; display: none">
+  <!-- <div class="container-fluid" id="results-header" style="width: 100vw; background-color: white; z-index:-1; padding: 0; display: none">
     <div class="btn-group dropleft">
       <button type="button" id="hide-result-page-button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="showHideResultScreen(this)">
       </button> 
@@ -111,10 +109,7 @@
         <button type="button" class="btn btn-primary">ACCESIBILIDAD</button>
       </div>
     </div>
-  </div>
-	  
-  <div class="container-fluid" id="second_map"></div>
- 
+  </div> --> 
 
   <div class="row" style="float: none; margin: 0 auto; position: fixed; bottom: 0; display: none" id="results-detail">
       <div class="row" id="result-row" style="display: none; margin: 0; padding: 1em;">
