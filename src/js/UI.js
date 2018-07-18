@@ -37,17 +37,14 @@ UI.prototype.search = function(stp, data){
 		
 		document.getElementById('results-button').style.display = ""
 			sl.forEach(function(elm, idx){
-				var result = document.getElementById('result-row')
-				var clone = result.cloneNode(true)
-				clone.classList.add('result-row')
-				clone.style.display = ""
-				clone.id = result.id + idx
+
+				var clone = createResultRow(idx)
 				clone.addEventListener('click', function(id){ 
 					return function(){
 						UX_UI.show_station(id);
 					}	
 				}(elm.id));
-				var icon = clone.getElementsByClassName("col-md-1")[0]
+				var icon = clone.getElementsByClassName("col-xs-1")[0]
 
 				if(elm['type'] == 0){
 					icon.classList.add("fas")
@@ -59,11 +56,35 @@ UI.prototype.search = function(stp, data){
 					icon.classList.add("fa-bus")
 					icon.classList.add("fa-lg")
 				}
-				var typeStation = clone.getElementsByClassName("col-md-4")[0]
+				var typeStation = clone.getElementsByClassName("col-xs-4")[0]
 				typeStation.innerHTML = elm['name']
-				result.parentNode.appendChild(clone)
+				document.getElementById('results').appendChild(clone)
 		});
 			
+	}
+
+	function createResultRow(idx){
+		var resultDiv = document.createElement('div')
+		resultDiv.className = 'row'
+		resultDiv.id = "result-row" + idx
+		resultDiv.style.padding = "1em"
+		resultDiv.style.margin = "0"
+
+		var iconDiv = document.createElement('div')
+		iconDiv.className = 'col-xs-1'
+		iconDiv.style['margin-right'] = "1em"
+
+		var nameDiv = document.createElement('div')
+		nameDiv.className = 'col-xs-4'
+
+		var extraDiv = document.createElement('div')
+		extraDiv.className = 'col-xs-7'
+
+		resultDiv.appendChild(iconDiv)
+		resultDiv.appendChild(nameDiv)
+		resultDiv.appendChild(extraDiv)
+
+		return resultDiv
 	}
 }
 
@@ -75,7 +96,7 @@ UI.prototype.show_station = function(id){
 
 UI.prototype.show_anotate = function(uri){
 	
-	alert("Se muestra la pantalla de anotación para el id: "+id);
+	alert("Se muestra la pantalla de anotación para el id: " + id);
 
 }
 
