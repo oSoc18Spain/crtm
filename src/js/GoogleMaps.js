@@ -41,7 +41,11 @@ GMaps.prototype.init = function(){
 
 GMaps.prototype.geocode = function(txt, cb){
 	
-	this.geocoder.geocode({'address': txt}, cb);
+	this.geocoder.geocode({'address': txt, 'bounds': {
+		north: 40.43778990262191,
+		east: -3.7212908320312636,
+		south: 40.219763326896945,
+		west: -3.314421325195326}}, cb);
 	
 }
 

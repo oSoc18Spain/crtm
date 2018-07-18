@@ -6,16 +6,16 @@ function Station(id,code,lat,lng,name,type){
 	this.lng = lng;
 	this.name = name;
 	this.type = type;
-	this.acc_obj;
+	this.acc_data;
 	this.access = new Array();
 	this.halls = new Array();
 	this.platforms = new Array();
 	
 }
 
-Station.prototype.addacc = function(acc_obj){
+Station.prototype.addacc = function(acc_data){
 	
-	this.acc_obj = acc_obj;
+	this.acc_data = acc_data;
 	
 }
 
@@ -55,10 +55,10 @@ Station.prototype.dist = function(ref){
 	
 }
 
-Station.prototype.addplatform = function(uri,line,direction,acc_obj){
+Station.prototype.addplatform = function(uri,line,direction,acc_data){
 	
 	platform = {
-		acc_obj: acc_obj,
+		acc_data: acc_data,
 		id: id,
 		line: line,
 		direction: direction
@@ -68,10 +68,10 @@ Station.prototype.addplatform = function(uri,line,direction,acc_obj){
 	
 }
 
-Station.prototype.addhalls = function(uri,lat,lng,name,acc_obj){
+Station.prototype.addhalls = function(uri,lat,lng,name,acc_data){
 	
 	hall = {
-		acc_obj: acc_obj,
+		acc_data: acc_data,
 		id: id,
 		lat: lat,
 		lng: lng,
@@ -82,10 +82,10 @@ Station.prototype.addhalls = function(uri,lat,lng,name,acc_obj){
 	
 }
 
-Station.prototype.addaccess = function(uri,lat,lng,name,acc_obj){
+Station.prototype.addaccess = function(uri,lat,lng,name,acc_data){
 	
 	access = {
-		acc_obj: acc_obj,
+		acc_data: acc_data,
 		id: id,
 		lat: lat,
 		lng: lng,

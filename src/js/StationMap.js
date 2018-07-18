@@ -71,7 +71,32 @@ StationMap.prototype.load_acc = function(st_arr, data){
 	
 	if(data != undefined){
 		
-		console.log(data.results.bindings);
+		data = data.results.bindings;
+		
+		console.log(data);
+		
+		for(i=0; i < data.length; i++){
+			
+			acc = new Accessibility(data[i].typeBusStop ? data[i].typeBusStop.value : undefined,
+									data[i].specialPavementBorder ? data[i].specialPavementBorder.value : undefined,
+									data[i].seats ? data[i].seats.value : undefined,
+									data[i].isquialSupports ? data[i].isquialSupports.value : undefined,
+									data[i].spaceWheelchair ? data[i].spaceWheelchair.value : undefined);
+			
+			for(j = 0; j < this.stations.length; j++){
+								
+				if(data[i].id.value == this.stations[j].id){
+					
+					this.stations[j].acc_data = acc;
+					
+					console.log(this.stations[j]);
+					
+				}
+				
+			}
+					
+		}
+			
 		
 	}else{
 		
