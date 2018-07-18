@@ -55,7 +55,7 @@ Station.prototype.dist = function(ref){
 	
 }
 
-Station.prototype.addplatform = function(uri,line,direction,acc_data){
+Station.prototype.addplatform = function(id,line,direction,acc_data){
 	
 	platform = {
 		acc_data: acc_data,
@@ -68,7 +68,7 @@ Station.prototype.addplatform = function(uri,line,direction,acc_data){
 	
 }
 
-Station.prototype.addhalls = function(uri,lat,lng,name,acc_data){
+Station.prototype.addhalls = function(id,lat,lng,name,acc_data){
 	
 	hall = {
 		acc_data: acc_data,
@@ -82,7 +82,7 @@ Station.prototype.addhalls = function(uri,lat,lng,name,acc_data){
 	
 }
 
-Station.prototype.addaccess = function(uri,lat,lng,name,acc_data){
+Station.prototype.addaccess = function(id,lat,lng,name,acc_data){
 	
 	access = {
 		acc_data: acc_data,
@@ -91,6 +91,15 @@ Station.prototype.addaccess = function(uri,lat,lng,name,acc_data){
 		lng: lng,
 		name: name
 	}
+	
+	access.coord = function(){
+		
+		return ll = {
+					lat: parseFloat(access.lat),
+					lng: parseFloat(access.lng)
+				}
+				
+	};
 		
 	this.access.push(access);
 	

@@ -221,7 +221,7 @@ StationMap.prototype.anotate = function(id,acc_data){
 	qpart2 = qpart2.substr(0, qpart2.length-2);
 	
 	
-	qtxt = `'PREFIX tran: <http://transacc.linkeddata.es/def/core#> 
+	qtxt = `PREFIX tran: <http://transacc.linkeddata.es/def/core#> 
 			PREFIX gtfs: <http://vocab.gtfs.org/terms#>
 			PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
