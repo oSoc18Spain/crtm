@@ -198,27 +198,27 @@ StationMap.prototype.anotate = function(id,acc_data){
 	
 	qpart1 = "";
 	
-	acc_data.typeBusStop ? qpart1 = qpart1 + "?ind tran:typeBusStop ?typeBusStop .":undefined;
-	acc_data.specialPavementBorder ? qpart1 = qpart1 + "?ind tran:specialPavementBorder ?specialPavementBorder .":undefined;
-	acc_data.seats ? qpart1 = qpart1 + "?ind tran:seats ?seats .":undefined;
-	acc_data.isquialSupports ? qpart1 = qpart1 + "?ind tran:isquialSupports ?isquialSupports .":undefined;
-	acc_data.spaceWheelchair ? qpart1 = qpart1 + "?ind tran:spaceWheelchair ?spaceWheelchair .":undefined;
-	acc_data.state ? qpart1 = qpart1 + "?ind tran:state ?state .":undefined;
-	acc_data.dateLastAnnot ? qpart1 = qpart1 + "?ind tran:dateLastAnnot ?dateLastAnnot .":undefined;
+	acc_data.typeBusStop ? qpart1 = qpart1 + "?ind tran:typeBusStop ?typeBusStop . ":undefined;
+	acc_data.specialPavementBorder ? qpart1 = qpart1 + "?ind tran:specialPavementBorder ?specialPavementBorder . ":undefined;
+	acc_data.seats ? qpart1 = qpart1 + "?ind tran:seats ?seats . ":undefined;
+	acc_data.isquialSupports ? qpart1 = qpart1 + "?ind tran:isquialSupports ?isquialSupports . ":undefined;
+	acc_data.spaceWheelchair ? qpart1 = qpart1 + "?ind tran:spaceWheelchair ?spaceWheelchair . ":undefined;
+	acc_data.state ? qpart1 = qpart1 + "?ind tran:state ?state . ":undefined;
+	acc_data.dateLastAnnot ? qpart1 = qpart1 + "?ind tran:dateLastAnnot ?dateLastAnnot . ":undefined;
 	
 	qpart1 = qpart1.substr(0, qpart1.length-2);
 	
 	qpart2 = "";
 	
-	acc_data.typeBusStop ? qpart2 = qpart2 + "?ind tran:typeBusStop "+acc_data.typeBusStop+" .":undefined;
-	acc_data.specialPavementBorder ? qpart2 = qpart2 + "?ind tran:specialPavementBorder "+acc_data.specialPavementBorder+" .":undefined;
-	acc_data.seats ? qpart2 = qpart2 + "?ind tran:seats "+acc_data.seats+" .":undefined;
-	acc_data.isquialSupports ? qpart2 = qpart2 + "?ind tran:isquialSupports "+acc_data.isquialSupports+" .":undefined;
-	acc_data.spaceWheelchair ? qpart2 = qpart2 + "?ind tran:spaceWheelchair "+acc_data.spaceWheelchair+" .":undefined;
-	acc_data.state ? qpart2 = qpart2 + "?ind tran:state "+acc_data.state+" .":undefined;
-	acc_data.dateLastAnnot ? qpart2 = qpart2 + "?ind tran:dateLastAnnot "+acc_data.dateLastAnnot+" .":undefined;
+	acc_data.typeBusStop ? qpart2 = qpart2 + "?ind tran:typeBusStop \""+acc_data.typeBusStop+"\" . ":undefined;
+	acc_data.specialPavementBorder ? qpart2 = qpart2 + "?ind tran:specialPavementBorder \""+acc_data.specialPavementBorder+"\"^^xsd:boolean . ":undefined;
+	acc_data.seats ? qpart2 = qpart2 + "?ind tran:seats \""+acc_data.seats+"\"^^xsd:boolean . ":undefined;
+	acc_data.isquialSupports ? qpart2 = qpart2 + "?ind tran:isquialSupports \""+acc_data.isquialSupports+"\"^^xsd:boolean . ":undefined;
+	acc_data.spaceWheelchair ? qpart2 = qpart2 + "?ind tran:spaceWheelchair \""+acc_data.spaceWheelchair+"\"^^xsd:boolean . ":undefined;
+	acc_data.state ? qpart2 = qpart2 + "?ind tran:state \""+acc_data.state+"\" . ":undefined;
+	acc_data.dateLastAnnot ? qpart2 = qpart2 + "?ind tran:dateLastAnnot \""+acc_data.dateLastAnnot+"\"^^xsd:date . ":undefined;
 	
-	qpart2 = qpart2.substr(0, qpart1.length-2);
+	qpart2 = qpart2.substr(0, qpart2.length-2);
 	
 	
 	qtxt = `'PREFIX tran: <http://transacc.linkeddata.es/def/core#> 
