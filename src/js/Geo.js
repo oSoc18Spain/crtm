@@ -35,6 +35,8 @@ Geo.prototype.update = function(pos){
 		lng: pos.coords.longitude
 	};
 	
+	GM.updateme(this.position);
+	
 }
 
 Geo.prototype.update_error = function(e){

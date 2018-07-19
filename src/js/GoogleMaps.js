@@ -30,12 +30,15 @@ GMaps.prototype.init = function(id, center, zoom){
 
 	this.markers = [];
 	
-	this.walker = {
-		url: 'https://osoc18spain.github.io/crtm/src/img/me.png',
-		size: new google.maps.Size(24, 24),
-		origin: new google.maps.Point(0, 0),
-		anchor: new google.maps.Point(0, 24)
-	};
+	this.walker = {mk_ico: {
+								url: 'https://osoc18spain.github.io/crtm/src/img/me.png',
+								size: new google.maps.Size(18, 18),
+								origin: new google.maps.Point(0, 0),
+								anchor: new google.maps.Point(0, 18)
+							},
+	
+				   mk: undefined
+				   };
 	
 }
 
@@ -110,5 +113,24 @@ GMaps.prototype.cleanstation = function(){
 	});
 	
 	this.markers = [];
+	
+}
+
+GMaps.prototype.updateme = function(pos){
+	
+	if(this.walker.mk == undefined){
+		
+		this.walker.mk = new google.maps.Marker({
+			position: pos,
+			map: this.map,
+			icon: this.walker.mk_ico,
+			title: "Yo"
+		});
+		
+	}else{
+		
+		this.walker.mk.setPosition(pos);
+		
+	}
 	
 }
