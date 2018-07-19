@@ -90,7 +90,7 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		
 		data = data.results.bindings;
 		
-		console.log(data);
+		//console.log(data);
 		
 		for(i=0; i < data.length; i++){
 			
@@ -108,7 +108,7 @@ StationMap.prototype.load_acc = function(st_arr, data){
 					
 					this.stations[j].acc_data = acc;
 					
-					console.log(this.stations[j]);
+					//console.log(this.stations[j]);
 					
 				}
 				
@@ -184,6 +184,64 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		q_metro.run(function(data){ SM.load_acc(metro_stops, data);}, this);
 		* 
 		*/
+		
+	}
+
+}
+
+StationMap.prototype.load_routes = function(st_arr, data){
+	
+	if(data != undefined){
+		
+		data = data.results.bindings;
+		
+		console.log(data);
+		
+		for(i=0; i < data.length; i++){
+			
+			for(j = 0; j < this.stations.length; j++){
+								
+				if(data[i].id.value == this.stations[j].id){
+					
+					this.stations[j].addroute(data[i].shortName.value, data[i].longName.value);
+					
+					console.log(this.stations[j]);
+					
+				}
+				
+			}
+					
+		}
+			
+		
+	}else{
+		
+		bus_stops = st_arr.filter(function(i){ return i.type == 1 });
+		metro_stops = st_arr.filter(function(i){ return i.type == 0 });
+	
+		q_bus = new SPARQL();
+		
+		qtxt = `PREFIX tran: <http://transacc.linkeddata.es/def/core#> 
+				PREFIX gtfs: <http://vocab.gtfs.org/terms#>
+				PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
+				PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+				PREFIX foaf:<http://xmlns.com/foaf/0.1/> 
+				PREFIX dct:<http://purl.org/dc/terms/>
+
+					select * where { 
+					?busStop gtfs:stopId ?id .
+					filter(?id in ${q_bus.build_in(bus_stops)}) .
+					?busStop rdf:type tran:BusStop .
+				    ?busStop gtfs:Route ?route  . 
+				    ?route gtfs:longName ?longName .
+				    ?route gtfs:shortName ?shortName
+
+				}`;
+		
+		console.log(qtxt);
+			
+		q_bus.query = qtxt;	
+		q_bus.run(function(data){ SM.load_routes(bus_stops, data);}, this);
 		
 	}
 

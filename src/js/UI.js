@@ -65,6 +65,8 @@ UI.prototype.search = function(stp, data){
 		
 		SM.load_acc(sl);
 		
+		SM.load_routes(sl);
+		
 		GM.cleanstation();
 		
 		int = setInterval(function(){ if(sl[0].acc_data != undefined){ GM.addstation(sl); clearInterval(int);} }, 500);
