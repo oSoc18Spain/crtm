@@ -16,6 +16,13 @@ function init(){
 		
 	UX_UI = new UI();
 	UX_UI.checkCookie('disability');
+	
+	int = setInterval(function(){ if(SM.status == 2){
+
+		 setTimeout(function(){document.getElementById("loading_slide").style.opacity = 0;},1000);
+		 setTimeout(function(){document.getElementById("loading_slide").style.display = "none";},2000);
+		 
+	 clearInterval(int);} }, 500);
 		
 }
    

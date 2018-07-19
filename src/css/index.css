@@ -73,3 +73,26 @@
 #accesibility-results-detail > .row {
 	padding: 1em;
 }
+
+#loading_slide {
+
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  opacity: 1;
+  transition: opacity 1s ease-in-out 0s;
+  
+}
+
+#loading_msg {
+
+    text-align: center;
+    padding-top: 15px;
+    
+}
+
+#loading_center {
+	margin: auto;
+	width: 400px;
+	height: 210px;
+}

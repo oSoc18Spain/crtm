@@ -1,6 +1,7 @@
 function StationMap(){
 
 	this.stations = new Array();
+	this.status = 0;
 	
 }
 
@@ -29,7 +30,10 @@ StationMap.prototype.load_stations_metro = function(data){
 		for(i=0; i < data.length; i++){			
 			this.stations.push(new Station(data[i].id.value, data[i].code.value, data[i].lat.value, data[i].long.value, data[i].name.value, 0));							
 		}
-		console.log("Loaded "+data.length+" Metro stops");
+		
+		this.status ++;
+		
+		UX_UI.log("Cargadas "+data.length+" estaciones de Metro...");
 		
 	}else{
 
@@ -57,7 +61,10 @@ StationMap.prototype.load_stations_bus = function(data){
 		for(i=0; i < data.length; i++){			
 			this.stations.push(new Station(data[i].id.value, data[i].code.value, data[i].lat.value, data[i].long.value, data[i].name.value, 1));							
 		}
-		console.log("Loaded "+data.length+" Bus stops");
+		
+		this.status++;
+		
+		UX_UI.log("Cargadas "+data.length+" estaciones de EMT...");
 		
 	}else{
 		

@@ -295,4 +295,10 @@ UI.prototype.displayStationTab = function(id_tab){
 
 }
 
+UI.prototype.log = function(txt){
+	
+	document.getElementById("loading_msg").innerHTML = txt;
+	
+}
+
 
