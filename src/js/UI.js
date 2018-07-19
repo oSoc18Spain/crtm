@@ -22,12 +22,42 @@ UI.prototype.search = function(stp, data){
 		
 	}
 	
+	if(stp == 0){
+		
+		if(G.status == 2){
+			
+			r = document.getElementsByClassName("result-row")
+
+			while(r.length > 0){
+				r[0].remove();
+			}
+			
+			UX_UI.search(1,undefined);
+			
+			
+		}else{
+			
+			console.log("Geolocation not working");
+			
+		}
+		
+	}
+		
+	
 	if(stp == 1){ // Se pasan las coordenadas a la matriz de estaciones para obtener las cercanas
+		
+		if(data != undefined){
 		
 		ll = {
 				lat: data[0].geometry.location.lat(), 
 				lng: data[0].geometry.location.lng()
 			};
+			
+		}else{
+			
+			ll = G.position;
+			
+		}
 
 		sl = SM.search(ll, MAX_RESULTS);
 		
