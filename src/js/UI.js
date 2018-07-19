@@ -26,6 +26,8 @@ UI.prototype.search = function(stp, data){
 		
 		if(G.status == 2){
 			
+			document.getElementById("search").value = "";
+			
 			r = document.getElementsByClassName("result-row")
 
 			while(r.length > 0){
