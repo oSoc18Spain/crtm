@@ -148,6 +148,8 @@ UI.prototype.checkCookie = function(cname){
     	var welcomeScreen = document.getElementById('welcome-screen')
     	welcomeScreen.style['z-index'] = -1
     }
+    else
+    	UX_UI.displayScreen('welcome-screen')
 }
 
 UI.prototype.displayScreen = function(id_screen){
