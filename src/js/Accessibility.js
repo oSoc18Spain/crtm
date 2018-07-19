@@ -28,7 +28,15 @@ Accessibility.prototype.getindex = function(){
 	this.isquialSupports ? index ++: undefined;
 	this.spaceWheelchair ? index ++: undefined;
 	
-	return index;
+	if(this.dateLastAnnot == undefined){
+		
+		return undefined;
+		
+	}else{
+	
+		return index;
+		
+	}
 	
 }
 	

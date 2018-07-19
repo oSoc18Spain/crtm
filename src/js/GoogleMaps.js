@@ -54,10 +54,36 @@ GMaps.prototype.addstation = function(station){
 	this.bounds = new google.maps.LatLngBounds();
 
 	for(i = 0; i < station.length; i++){
+		
+		if(station[i].getindex() < 2){	
+			pinColor = "EE1111";	
+		}
+		
+		if(station[i].getindex() >= 2 && station[i].getindex() < 4){	
+			pinColor = "EEEE11";	
+		}
+		
+		if(station[i].getindex() >= 4){	
+			pinColor = "11EE11";	
+		}
+		
+		if(station[i].getindex() == undefined){	
+			pinColor = "666666";	
+		}
+		
+		
+		
+		
+		
+		pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+        new google.maps.Size(21, 34),
+        new google.maps.Point(0,0),
+        new google.maps.Point(10, 34));
 				
 		marker = new google.maps.Marker({
 			position: station[i].coord(),
 			map: this.map,
+			icon: pinImage,
 			title: station[i].name
 		});
 		

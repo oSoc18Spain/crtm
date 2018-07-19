@@ -34,7 +34,8 @@ UI.prototype.search = function(stp, data){
 		SM.load_acc(sl);
 		
 		GM.cleanstation();
-		GM.addstation(sl);
+		
+		int = setInterval(function(){ if(sl[0].acc_data != undefined){ GM.addstation(sl); clearInterval(int);} }, 500);
 		
 		document.getElementById('results-button').style.display = ""
 			sl.forEach(function(elm, idx){

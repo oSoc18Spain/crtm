@@ -19,6 +19,20 @@ Station.prototype.addacc = function(acc_data){
 	
 }
 
+Station.prototype.getindex = function(){
+	
+	if(this.acc_data){
+	
+		return this.acc_data.getindex();
+		
+	}else{
+		
+		return undefined;
+		
+	}
+	
+}
+
 Station.prototype.coord = function(){
 	
 	ll = {
