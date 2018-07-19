@@ -88,10 +88,10 @@ StationMap.prototype.load_acc = function(st_arr, data){
 		for(i=0; i < data.length; i++){
 			
 			acc = new Accessibility(data[i].typeBusStop ? {bus: data[i].typeBusStop.value} : undefined,
-									data[i].specialPavementBorder ? data[i].specialPavementBorder.value  == 1 ? true : false : undefined,
-									data[i].seats ? data[i].seats.value == 1 ? true : false : undefined,
-									data[i].isquialSupports ? data[i].isquialSupports.value  == 1 ? true : false : undefined,
-									data[i].spaceWheelchair ? data[i].spaceWheelchair.value  == 1 ? true : false : undefined,
+									data[i].specialPavementBorder ? (data[i].specialPavementBorder.value  == 1 ? true : false) : undefined,
+									data[i].seats ? (data[i].seats.value == 1 ? true : false) : undefined,
+									data[i].isquialSupports ? (data[i].isquialSupports.value  == 1 ? true : false) : undefined,
+									data[i].spaceWheelchair ? (data[i].spaceWheelchair.value  == 1 ? true : false) : undefined,
 									data[i].state ? data[i].state.value : undefined,
 									data[i].dateLastAnnot ? data[i].dateLastAnnot.value : undefined);
 			
