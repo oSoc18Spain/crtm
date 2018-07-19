@@ -91,7 +91,7 @@ UI.prototype.search = function(stp, data){
 					icon.classList.add("fa-lg")
 				}
 				var typeStation = clone.getElementsByClassName("col-xs-4")[0]
-				typeStation.innerHTML = elm['name']
+				typeStation.innerHTML = elm['name'] + " (" + elm['code'] + ")" 
 				document.getElementById('results').appendChild(clone)
 		});
 			

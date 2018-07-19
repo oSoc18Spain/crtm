@@ -34,11 +34,15 @@ function init(){
   		resultsDiv.style.display = "block";
   		resultsButton.style.bottom = (resultsDiv.offsetHeight - resultsButton.offsetHeight / 2).toString() + "px" ;
       mapDiv.style.height = (mapDiv.offsetHeight - resultsDiv.offsetHeight).toString() + "px"
+      resultsButton.classList.remove('fa-arrow-up')
+      resultsButton.classList.add('fa-arrow-down')
   	}
   	else{
       mapDiv.style.height = (mapDiv.offsetHeight + resultsDiv.offsetHeight).toString() + "px"
   		resultsDiv.style.display = "none";
   		resultsButton.style.bottom = 0;
+      resultsButton.classList.remove('fa-arrow-down')
+      resultsButton.classList.add('fa-arrow-up')
   	}
   }
 
