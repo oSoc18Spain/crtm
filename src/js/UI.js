@@ -176,8 +176,58 @@ UI.prototype.show_station = function(id){
 
 	function displayGeneralInfoStation(id_station){
 
-		currentStation = SM.getStationById(id_station)
-		document.getElementById('station-title').innerHTML = currentStation.name + " (" + currentStation.code + ")"
+		cs = SM.getStationById(id_station)
+		document.getElementById('station-title').innerHTML = cs.name + " (" + cs.code + ")"
+
+		acc_elems = document.getElementById('accesibility-results-detail').getElementsByClassName('row')
+
+		for (var i = 0; i < acc_elems.length ; i++){
+			
+			if (acc_elems[i].getElementsByClassName('row').length > 0)
+				acc_elems[i].getElementsByClassName('row')[0].remove();
+			d = document.createElement('div')
+			d.className = "row fas"
+			
+			if (acc_elems[i].id == 'acc-seats'){
+				if (cs.acc_data.seats == undefined)
+					d.classList.add('fa-times')
+					
+				else if(cs.acc_data.seats == false)
+					d.classList.add('fa-question')
+				else
+					d.classList.add('fa-check')
+				acc_elems[i].appendChild(d)
+			}
+			else if (acc_elems[i].id == 'acc-isquial-sup'){
+				if (cs.acc_data.isquialSupports == undefined)
+					d.classList.add('fa-times')
+				else if(cs.acc_data.isquialSupports == false)
+					d.classList.add('fa-question')
+				else
+					d.classList.add('fa-check')
+				acc_elems[i].appendChild(d)
+			} 
+			else if (acc_elems[i].id == 'acc-pavement'){
+				if (cs.acc_data.specialPavementBorder == undefined)
+					d.classList.add('fa-times')
+				else if(cs.acc_data.specialPavementBorder == false)
+					d.classList.add('fa-question')
+				else
+					d.classList.add('fa-check')
+				acc_elems[i].appendChild(d)
+			}
+			else if (acc_elems[i].id == 'acc-wheelchair'){
+				if (cs.acc_data.spaceWheelchair == undefined)
+					d.classList.add('fa-times')
+				else if(cs.acc_data.spaceWheelchair == false)
+					d.classList.add('fa-question')
+				else
+					d.classList.add('fa-check')
+				acc_elems[i].appendChild(d)
+			}
+
+
+		}		
 
 	}
 }

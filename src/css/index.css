@@ -69,3 +69,7 @@
 	color: #0069d9;
 	border-color: #0069d9;
 }
+
+#accesibility-results-detail > .row {
+	padding: 1em;
+}
