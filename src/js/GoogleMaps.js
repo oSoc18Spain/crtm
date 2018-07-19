@@ -31,7 +31,7 @@ GMaps.prototype.init = function(id, center, zoom){
 	this.markers = [];
 	
 	this.walker = {
-		url: '/img/walker.png',
+		url: 'https://osoc18spain.github.io/crtm/src/img/me.png',
 		size: new google.maps.Size(24, 24),
 		origin: new google.maps.Point(0, 0),
 		anchor: new google.maps.Point(0, 24)
