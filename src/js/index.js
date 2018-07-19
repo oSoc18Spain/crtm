@@ -40,7 +40,7 @@ function init(){
     console.log(elm.id)
 
     var results = document.getElementById('results-nav')
-    var resultDetail = document.getElementById('results-detail')
+    var resultDetail = document.getElementById('general-results-detail')
     var searchbar = document.getElementById('sbox')
     var resultheader = document.getElementById('results-header')
 

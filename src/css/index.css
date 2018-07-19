@@ -55,6 +55,13 @@
 	border-radius: 0px;
 }
 
-#results-button{
-  	left: calc(50vw - 12px);
+#station_slide .btn-primary {
+	background-color: #0069d9; 
+	color: #fff;
+}
+
+#station_slide .btn-primary:focus {
+	background-color: #fff; 
+	color: #0069d9;
+	border-color: #0069d9;
 }

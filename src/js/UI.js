@@ -1,4 +1,5 @@
 var MAX_RESULTS = 15;
+var currentStation;
 
 function UI(){
 
@@ -121,7 +122,31 @@ UI.prototype.show_station = function(id){
 	if (c.type == 1)	//Bus station
 		DM.map.setZoom(DM.map.getZoom() - 2)
 
+	displayGeneralInfoStation(id)
+
 	UX_UI.displayScreen('station_slide');
+	btn_general = document.getElementById('btn-general-results-detail');
+	btn_accesibility = document.getElementById('btn-accesibility-results-detail')
+	btn_general.addEventListener('click', function(id){ 
+					return function(){
+						btn_general.focus();
+						UX_UI.displayStationTab(id);
+					}
+				}('general-results-detail'));
+	btn_accesibility.addEventListener('click', function(id){ 
+					return function(){
+						btn_accesibility.focus();
+						UX_UI.displayStationTab(id);
+					}
+				}('accesibility-results-detail'));
+	btn_general.click();
+
+	function displayGeneralInfoStation(id_station){
+
+		currentStation = SM.getStationById(id_station)
+		document.getElementById('station-title').innerHTML = currentStation.name + " (" + currentStation.code + ")"
+
+	}
 }
 	
 UI.prototype.show_anotate = function(uri){
@@ -167,6 +192,25 @@ UI.prototype.displayScreen = function(id_screen){
 		}
 	}
 		
+}
+
+UI.prototype.displayStationTab = function(id_tab){
+	console.log("Mostrar tab function ejecutada")
+	console.log(id_tab)
+	s = document.getElementById('station_slide')
+	tabs = s.getElementsByClassName('tab')
+
+	for (var i = 0 ; i < tabs.length ; i++){
+		if(id_tab == tabs[i].id){
+			t = document.getElementById(id_tab)
+			t.style.display = ""
+			t.style['z-index'] = 1
+		}
+		else{
+			tabs[i].style['z-index'] = 0
+		}
+	}
+
 }
 
 
