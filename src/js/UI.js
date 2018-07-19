@@ -190,37 +190,36 @@ UI.prototype.show_station = function(id){
 			
 			if (acc_elems[i].id == 'acc-seats'){
 				if (cs.acc_data.seats == undefined)
-					d.classList.add('fa-times')
-					
-				else if(cs.acc_data.seats == false)
 					d.classList.add('fa-question')
+				else if(cs.acc_data.seats == false)
+					d.classList.add('fa-times')
 				else
 					d.classList.add('fa-check')
 				acc_elems[i].appendChild(d)
 			}
 			else if (acc_elems[i].id == 'acc-isquial-sup'){
 				if (cs.acc_data.isquialSupports == undefined)
-					d.classList.add('fa-times')
-				else if(cs.acc_data.isquialSupports == false)
 					d.classList.add('fa-question')
+				else if(cs.acc_data.isquialSupports == false)
+					d.classList.add('fa-times')
 				else
 					d.classList.add('fa-check')
 				acc_elems[i].appendChild(d)
 			} 
 			else if (acc_elems[i].id == 'acc-pavement'){
 				if (cs.acc_data.specialPavementBorder == undefined)
-					d.classList.add('fa-times')
-				else if(cs.acc_data.specialPavementBorder == false)
 					d.classList.add('fa-question')
+				else if(cs.acc_data.specialPavementBorder == false)
+					d.classList.add('fa-times')
 				else
 					d.classList.add('fa-check')
 				acc_elems[i].appendChild(d)
 			}
 			else if (acc_elems[i].id == 'acc-wheelchair'){
 				if (cs.acc_data.spaceWheelchair == undefined)
-					d.classList.add('fa-times')
-				else if(cs.acc_data.spaceWheelchair == false)
 					d.classList.add('fa-question')
+				else if(cs.acc_data.spaceWheelchair == false)
+					d.classList.add('fa-times')
 				else
 					d.classList.add('fa-check')
 				acc_elems[i].appendChild(d)
