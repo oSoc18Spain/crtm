@@ -96,3 +96,15 @@
 	width: 400px;
 	height: 210px;
 }
+
+#accesibility-results-detail .fas{
+	margin-left: 1em;
+}
+
+#anotate-button{
+	position: absolute;
+	bottom: 1em;
+	right: 1em;
+
+}
+

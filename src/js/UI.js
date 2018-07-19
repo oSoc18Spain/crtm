@@ -187,6 +187,20 @@ UI.prototype.show_station = function(id){
 				acc_elems[i].getElementsByClassName('row')[0].remove();
 			d = document.createElement('div')
 			d.className = "row fas"
+
+			if(acc_elems[i].id == 'stop-type'){
+				if(cs.acc_data.type == undefined){
+					d.classList.add('fas')
+					d.classList.add('fa-question')
+				}
+				else if('bus' in cs.acc_data.type && cs.acc_data.type['bus'] == 'roof'){
+					d.innerHTML = "Marquesina"
+				}
+				else if('bus' in cs.acc_data.type && cs.acc_data.type['bus'] != 'roof'){
+					d.innerHTML = "Poste"
+				}
+				acc_elems[i].appendChild(d)
+			}
 			
 			if (acc_elems[i].id == 'acc-seats'){
 				if (cs.acc_data.seats == undefined)
@@ -280,6 +294,7 @@ UI.prototype.displayStationTab = function(id_tab){
 	console.log("Mostrar tab function ejecutada")
 	console.log(id_tab)
 	s = document.getElementById('station_slide')
+	ab = document.getElementById('anotate-button')
 	tabs = s.getElementsByClassName('tab')
 
 	for (var i = 0 ; i < tabs.length ; i++){
@@ -287,6 +302,7 @@ UI.prototype.displayStationTab = function(id_tab){
 			t = document.getElementById(id_tab)
 			t.style.display = ""
 			t.style['z-index'] = 1
+			ab.style['z-index'] = 1
 		}
 		else{
 			tabs[i].style['z-index'] = 0
