@@ -352,6 +352,10 @@ UI.prototype.selectAnnotation = function(htmlElem){
 			accessibilityOption.style.display = ""
 			sendButton.style.display = ""
 			sendButton.disabled = false
+			if(htmlElem.value == "T"){
+				msg.innerHTML = "¿De que tipo es la parada?"
+				createOptions("text", ["Marquesina", "Poste"], accessibilityOption)
+			}
 			if(htmlElem.value == "S"){
 				msg.innerHTML = "¿La parada dispone de asientos?"
 				createOptions("boolean", 3, accessibilityOption)
@@ -385,6 +389,9 @@ UI.prototype.selectAnnotation = function(htmlElem){
 		else
 			result = undefined;
 
+		if(accessibilityAttribute.value == "T"){
+			cs.acc_data.type = accessibilityOption.value
+		}
 		if(accessibilityAttribute.value == "S"){
 			cs.acc_data.seats = result
 		}
@@ -399,10 +406,10 @@ UI.prototype.selectAnnotation = function(htmlElem){
 		} 
 	}
 
-	function createOptions(type, num_options, selectElem){
+	function createOptions(type, options, selectElem){
 		selectElem.innerHTML = ""
 		if(type == "boolean")
-			for(var i = 0 ; i < num_options ; i++){
+			for(var i = 0 ; i < options ; i++){
 				o = document.createElement('option')
 				if(i == 0){
 					o.value = ""
@@ -418,6 +425,20 @@ UI.prototype.selectAnnotation = function(htmlElem){
 				}
 				selectElem.add(o)
 			}
+		else if(type == "text"){
+			console.log("createOptions - text")
+			if(typeof(options) == "object"){
+				options.forEach(function(el, ind){
+					o = document.createElement('option')
+					o.text = el
+					if(el == "Marquesina")
+						o.value = "roof"
+					else
+						o.value = "no-roof"
+					selectElem.add(o)
+				});
+			}
+		}
 	}
 }
 

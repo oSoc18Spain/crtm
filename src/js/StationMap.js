@@ -218,12 +218,6 @@ StationMap.prototype.load_routes = function(st_arr, data){
 		
 		bus_stops = st_arr.filter(function(i){ return i.type == 1 });
 		metro_stops = st_arr.filter(function(i){ return i.type == 0 });
-		
-		for(i = 0; i < st_arr.length; i++){
-			
-			st_arr[i].cleanroute();
-			
-		}
 	
 		q_bus = new SPARQL();
 		
