@@ -297,6 +297,7 @@ UI.prototype.displayScreen = function(id_screen){
 		if(id_screen == slides[i].id){
 			screen = document.getElementById(id_screen)
 			screen.style.display = ""
+			document.getElementById('send-button-msg').style.display = "none"
 			screen.style['z-index'] = 1
 		}
 		else{
@@ -390,9 +391,9 @@ UI.prototype.selectAnnotation = function(htmlElem){
 			result = undefined;
 
 		if(accessibilityAttribute.value == "T"){
-			cs.acc_data.type = accessibilityOption.value
+			cs.acc_data.type = { 'bus' : accessibilityOption.value }
 		}
-		if(accessibilityAttribute.value == "S"){
+		else if(accessibilityAttribute.value == "S"){
 			cs.acc_data.seats = result
 		}
 		else if(accessibilityAttribute.value == "W"){
@@ -445,4 +446,5 @@ UI.prototype.selectAnnotation = function(htmlElem){
 UI.prototype.sendData = function(){
 	cs.acc_data.update()
 	SM.anotate(cs.id, cs.acc_data)
+	document.getElementById('send-button-msg').style.display = ""
 }	

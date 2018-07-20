@@ -147,7 +147,7 @@
       </div>
       <div class="container-fluid" style="display: table">
         <form class="navbar-form">
-          Seleccione la característica de accesibilidad a anotar:
+          <p>Seleccione la característica de accesibilidad a anotar:</p>
           <select id="accessibility-attribute" onchange="UX_UI.selectAnnotation(this)">
             <option value="">Seleccione</option>
             <option value="T">Tipo de parada</option>
@@ -157,13 +157,20 @@
             <option value="P">Pavimento</option>
           </select>
           <div>
-            <span id="accessibility-msg"></span>
+            <p id="accessibility-msg"></p>
             <select id="accessibility-option" style="display: none" onchange="UX_UI.selectAnnotation(this)">
             </select>
           </div>
           
         </form>
-        <button type="button" id="send-button" class="btn btn-primary" onclick="UX_UI.sendData()" style="margin-top: 1em;" disabled="true">Enviar</button>
+        <div style="margin-top: 1em;">
+          <button type="button" id="send-button" class="btn btn-primary" onclick="UX_UI.sendData()"  disabled="true">Enviar</button>
+          <div id="send-button-msg" style="color: green">
+            <span class="fas fa-check-circle"></span>
+            Datos enviados correctamente
+          </div>
+        </div>
+        
           
 
       </div>

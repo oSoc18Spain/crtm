@@ -140,3 +140,14 @@ float: right;
 	position: absolute;
 }
 
+#accessibility-msg{
+	margin-top: 1em;
+}
+
+#send-button, #send-button-msg{
+	float: left;
+}
+
+#send-button-msg{
+	margin-left: 1em;
+}
