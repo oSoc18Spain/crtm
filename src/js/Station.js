@@ -134,6 +134,6 @@ Station.prototype.addroute = function(code,name){
 
 Station.prototype.cleanroute = function(code,name){
 
-	this.routes = undefined;
+	this.routes = new Array();
 	
 }
