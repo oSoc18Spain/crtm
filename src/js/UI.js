@@ -1,5 +1,5 @@
 var MAX_RESULTS = 15;
-var currentStation;
+var cs;
 
 function UI(){
 
@@ -64,6 +64,8 @@ UI.prototype.search = function(stp, data){
 		sl = SM.search(ll, MAX_RESULTS);
 		
 		SM.load_acc(sl);
+		
+		SM.load_routes(sl);
 		
 		GM.cleanstation();
 		
@@ -248,7 +250,8 @@ UI.prototype.show_station = function(id){
 UI.prototype.show_anotate = function(uri){
 	
 	alert("Se muestra la pantalla de anotación para el id: " + id);
-
+	cs = SM.getStationById(id_station)
+	document.getElementById('station-title').innerHTML = cs.name + " (" + cs.code + ")"
 }
 
 UI.prototype.setCookie = function(elm, cname){
@@ -291,10 +294,9 @@ UI.prototype.displayScreen = function(id_screen){
 }
 
 UI.prototype.displayStationTab = function(id_tab){
-	console.log("Mostrar tab function ejecutada")
-	console.log(id_tab)
 	s = document.getElementById('station_slide')
 	ab = document.getElementById('anotate-button')
+	dateDiv = document.getElementById('last-modification-date')
 	tabs = s.getElementsByClassName('tab')
 
 	for (var i = 0 ; i < tabs.length ; i++){
@@ -303,6 +305,11 @@ UI.prototype.displayStationTab = function(id_tab){
 			t.style.display = ""
 			t.style['z-index'] = 1
 			ab.style['z-index'] = 1
+			dateDiv.style['z-index'] = 1
+			dateDiv.innerHTML = ""
+			lastModDateText = document.createElement('i')
+			lastModDateText.innerHTML = "Ultima modificación: " + (cs.acc_data.dateLastAnnot == undefined ? "No definida" : cs.acc_data.dateLastAnnot)
+			dateDiv.appendChild(lastModDateText)
 		}
 		else{
 			tabs[i].style['z-index'] = 0
@@ -317,4 +324,90 @@ UI.prototype.log = function(txt){
 	
 }
 
+UI.prototype.selectAnnotation = function(htmlElem){
 
+	sendButton = document.getElementById('send-button')
+	accessibilityOption = document.getElementById('accessibility-option')
+	accessibilityAttribute = document.getElementById('accessibility-attribute')
+
+	if(htmlElem.id == "accessibility-attribute"){
+		accessibilityOption.style.display = ""
+		msg = document.getElementById('accessibility-msg')
+		
+		if(htmlElem.value.length > 0){
+			accessibilityOption.style.display = ""
+			sendButton.style.display = ""
+			sendButton.disabled = false
+			if(htmlElem.value == "S"){
+				msg.innerHTML = "¿La parada dispone de asientos?"
+				createOptions("boolean", 3, accessibilityOption)
+			}
+			else if(htmlElem.value == "W"){
+				msg.innerHTML = "¿La parada dispone de espacio para silla de ruedas?"
+				createOptions("boolean", 3, accessibilityOption)
+			}
+			else if(htmlElem.value == "I"){
+				msg.innerHTML = "¿La parada dispone de apoyos lumbares?"
+				createOptions("boolean", 3, accessibilityOption)
+			}
+			else if(htmlElem.value == "P"){
+				msg.innerHTML = "¿La parada dispone de pavimento para ciegos?"
+				createOptions("boolean", 3, accessibilityOption)
+			}
+		}
+		else{
+			accessibilityOption.style.display = "none"
+			sendButton.disabled = true
+			msg.innerHTML = "";
+		}
+	}
+	else if(htmlElem.id == "accessibility-option" && accessibilityAttribute.value.length > 0){
+
+		var result;
+		if(accessibilityOption.value == "true")
+			result = true;
+		else if(accessibilityOption.value == "false")
+			result = false;
+		else
+			result = undefined;
+
+		if(accessibilityAttribute.value == "S"){
+			cs.acc_data.seats = result
+		}
+		else if(accessibilityAttribute.value == "W"){
+			cs.acc_data.spaceWheelchair = result
+		}
+		else if(accessibilityAttribute.value == "I"){
+			cs.acc_data.isquialSupports = result
+		}
+		else if(accessibilityAttribute.value == "P"){
+			cs.acc_data.specialPavementBorder = result
+		} 
+	}
+
+	function createOptions(type, num_options, selectElem){
+		selectElem.innerHTML = ""
+		if(type == "boolean")
+			for(var i = 0 ; i < num_options ; i++){
+				o = document.createElement('option')
+				if(i == 0){
+					o.value = ""
+					o.text = "Seleccione"
+				}
+				if(i == 1){
+					o.value = true
+					o.text = "SI"
+				}
+				else if(i == 2){
+					o.value = false
+					o.text = "NO"
+				}
+				selectElem.add(o)
+			}
+	}
+}
+
+UI.prototype.sendData = function(){
+	cs.acc_data.update()
+	SM.anotate(cs.id, cs.acc_data)
+}	

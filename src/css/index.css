@@ -9,8 +9,6 @@
     background: #FFF;
     top: 0px;
     left: 0px;
-    padding: 10px;
-    
 }
 .row{
 	margin-left: 0;
@@ -91,6 +89,13 @@
     
 }
 
+#loading_img {
+
+	width: 350px;
+	margin-left: 25px;
+	
+}
+
 #loading_center {
 	margin: auto;
 	width: 400px;
@@ -106,5 +111,32 @@
 	bottom: 1em;
 	right: 1em;
 
+}
+
+.toggle.toggle-margin {
+
+margin-left: 25px;
+float: right;
+
+}
+
+.opt-box {
+
+	margin-top: 25px;
+	
+}
+
+.opt-txt {
+
+    font-size: 20px;
+    line-height: 34px;
+    padding: 0px;
+    margin: 0px;
+
+}
+#last-modification-date{
+	bottom: 1em;
+	left: 1em;
+	position: absolute;
 }
 

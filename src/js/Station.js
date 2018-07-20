@@ -7,6 +7,7 @@ function Station(id,code,lat,lng,name,type){
 	this.name = name;
 	this.type = type;
 	this.acc_data;
+	this.routes = new Array();
 	this.access = new Array();
 	this.halls = new Array();
 	this.platforms = new Array();
@@ -116,5 +117,17 @@ Station.prototype.addaccess = function(id,lat,lng,name,acc_data){
 	};
 		
 	this.access.push(access);
+	
+}
+
+
+Station.prototype.addroute = function(code,name){
+	
+	route = {
+		code: code,
+		name: name
+	}
+
+	this.routes.push(route);
 	
 }
