@@ -157,6 +157,7 @@ UI.prototype.show_station = function(id){
 	if (c.type == 1)	//Bus station
 		DM.map.setZoom(DM.map.getZoom() - 2)
 
+
 	displayGeneralInfoStation(id)
 
 	UX_UI.displayScreen('station_slide');
@@ -174,12 +175,26 @@ UI.prototype.show_station = function(id){
 						UX_UI.displayStationTab(id);
 					}
 				}('accesibility-results-detail'));
+
 	btn_general.click();
 
 	function displayGeneralInfoStation(id_station){
 
 		cs = SM.getStationById(id_station)
 		document.getElementById('station-title').innerHTML = cs.name + " (" + cs.code + ")"
+
+		results_elems = document.getElementById('general-results-detail').getElementsByClassName('row')[0]
+		results_elems.innerHTML = ""
+		i = document.createElement('p')
+		i.innerHTML = "Lineas asociadas a esta parada:"
+		results_elems.appendChild(i)
+
+		cs.routes.forEach(function(r){
+			routePrgh = document.createElement('p')
+			routePrgh.innerHTML = r['code'] + ": " + r['name']
+			results_elems.appendChild(routePrgh)
+		})
+
 
 		acc_elems = document.getElementById('accesibility-results-detail').getElementsByClassName('row')
 
@@ -240,8 +255,6 @@ UI.prototype.show_station = function(id){
 					d.classList.add('fa-check')
 				acc_elems[i].appendChild(d)
 			}
-
-
 		}		
 
 	}
@@ -298,10 +311,11 @@ UI.prototype.displayStationTab = function(id_tab){
 	ab = document.getElementById('anotate-button')
 	dateDiv = document.getElementById('last-modification-date')
 	tabs = s.getElementsByClassName('tab')
+	t = document.getElementById(id_tab)
+	t.style.height = screen.offsetHeight - document.getElementById('results-header').offsetHeight + "px"
 
 	for (var i = 0 ; i < tabs.length ; i++){
 		if(id_tab == tabs[i].id){
-			t = document.getElementById(id_tab)
 			t.style.display = ""
 			t.style['z-index'] = 1
 			ab.style['z-index'] = 1
