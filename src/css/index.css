@@ -103,3 +103,25 @@
 	width: 400px;
 	height: 210px;
 }
+
+.toggle.toggle-margin {
+
+margin-left: 25px;
+float: right;
+
+}
+
+.opt-box {
+
+	margin-top: 25px;
+	
+}
+
+.opt-txt {
+
+    font-size: 20px;
+    line-height: 34px;
+    padding: 0px;
+    margin: 0px;
+    
+}
